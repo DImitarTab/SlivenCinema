@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>About the cinema</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Bungee+Shade"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans"
+      rel="stylesheet"
+    />
+    <link href="~/content/css/site.css" rel="stylesheet"/>
+    <script
+      type="module"
+      src="~/js/site.js"
+    ></script>
+  </head>
+
+  <body>
+    <div class="container">
+      <header class="header">
+        <div class="header-name"><h1>Sliven Cinema</h1></div>
+      </header>
+      <section class="main-body">
+        <nav>
+          <ul>
+             <li><a asp-area="" asp-controller="Home" asp-action="Index">This week</a></li>
+          <li><a asp-area="" asp-controller="Home" asp-action="ComingSoon">Coming Soon</a></li>
+          <li><a asp-area="" asp-controller="Screening" asp-action="BookTicket">Book a ticket</a></li>
+          <li><a asp-area="" asp-controller="Screening" asp-action="BookTicket">About the cinema</a></li>
+          </ul>
+        </nav>
+        <div class="about">
+          <div class="heading heading--about"><h2>About the cinema</h2></div>
+          <p class="about-text">
+            The Renovated cinema "Aglikina polqna" has one hall with 128 seats,
+            equipped with a new digital and 3D machine, a new modern surround
+            sound system, and new and comfortable seats. All of this will help
+            you relax and enjoy the newest world film releases on the week they
+            air in Bulgaria.
+          </p>
+          <div class="images">
+            <img src="~/images/seats.jpg" class="interior" alt="Cinema seats" />
+            <img src="~/images/screen.jpg" class="interior" alt="Cinema screen" />
+          </div>
+        </div>
+      </section>
+    </div>
+  
+  </body>
+</html>

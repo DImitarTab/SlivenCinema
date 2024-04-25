@@ -1,0 +1,207 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>96</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Bungee+Shade"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans"
+      rel="stylesheet"
+    />
+   <link href="content/css/site.css" rel="stylesheet"/>
+  </head>
+  <style>
+      #popupContainer {
+          color: black;
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    overflow: auto;
+}
+
+/* Popup content */
+.popupContent {
+    background-color: #fefefe;
+    color: black;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 50%;
+    max-width: 500px;
+    text-align: center;
+    position: relative;
+}
+
+/* Close button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    position: absolute;
+    top: 0;
+    right: 10px;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+  </style>
+
+  <body>
+    <div class="container">
+      <header class="header">
+        <div class="header-name"><h1>Sliven Cinema</h1></div>
+      </header>
+      <section class="main-body">
+        <nav>
+          <ul>
+            <li><a asp-area="" asp-controller="Home" asp-action="Index">This week</a></li>
+          <li><a asp-area="" asp-controller="Home" asp-action="ComingSoon">Coming Soon</a></li>
+          <li><a asp-area="" asp-controller="Screening" asp-action="BookTicket">Book a ticket</a></li>
+          <li><a asp-area="" asp-controller="Home" asp-action="About">About the cinema</a></li>
+          </ul>
+        </nav>
+        <div class="main-panel">
+            <div id="popupContainer">
+                <div class="popupContent">
+                    <span class="close">&times;</span>
+            <h1>Add Movie Screening</h1>
+            <form id="movieScreeningForm">
+                <label for="movieName">Movie Name:</label>
+                <input type="text" id="movieName" name="movieName" required><br><br>
+
+                <label for="screeningDate">Screening Date:</label>
+                <input type="date" id="screeningDate" name="screeningDate" required><br><br>
+
+                <label for="screeningTime">Screening Time:</label>
+                <input type="time" id="screeningTime" name="screeningTime" required><br><br>
+
+                <button type="submit">Add Screening</button>
+            </form>
+                </div>
+             </div>
+          <div class="title-block">
+            <img
+              src="../images/96.jpg"
+              class="individual-movie"
+              alt="96 movie poster"
+            />
+            <div class="information">
+              <div class="heading heading--name"><h2>96</h2></div>
+              <hr />
+              <div class="side-info">
+                <time class="duration">2h 38min</time>
+                <span class="ghost">|</span> <span class="genre">Romance</span>
+                <span class="ghost">|</span>
+                <span class="date">4 October 2018 (France)</span>
+              </div>
+              <p class="summary-text">
+                A mute girl falls in love with a rogue and tries changing his
+                life for good. Will the change be perennial? Or will it be
+                temporary? New surprises that life brings on forms the crux of
+                the story.
+              </p>
+              <hr />
+            </div>
+          </div>
+          <div class="screening-block">
+            <div class="heading heading--times"><h2>Screening Times:</h2></div>
+            <div class="screening-times">
+              <span> Tuesday, 24 September </span>
+              <div class="projection projection--one">
+                <div class="time-container">
+                  <a href="../Book-Ticket.html?time=16:00&movie=96">16:00</a>
+                </div>
+                <div class="time-container">
+                  <a href="../book-ticket.html?time=18:00&movie=96">18:00</a>
+                </div>
+                <div class="time-container">
+                  <button id="openPopup">+</button>
+                </div>
+              </div>
+              <span> Wednesday, 25 September </span>
+              <div class="projection projection--two">
+                <div class="time-container">
+                  <a href="../book-ticket.html?time=12:00&movie=96">12:00</a>
+                </div>
+                <div class="time-container">
+                  <a href="../book-ticket.html?time=20:00&movie=96">20:00</a>
+                </div>
+              </div>
+              <span> Friday, 27 September </span>
+              <div class="projection projection--three">
+                <div class="time-container">
+                  <a href="../book-ticket.html?time=16:00&movie=96">16:00</a>
+                </div>
+                <div class="time-container">
+                  <a href="../book-ticket.html?time=18:00&movie=96">18:00</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </body>
+
+  <script>
+      document.getElementById("openPopup").addEventListener("click", function() {
+    document.getElementById("popupContainer").style.display = "block";
+});
+
+// Close the popup when the close button or outside the popup is clicked
+document.querySelector(".close").addEventListener("click", function() {
+    document.getElementById("popupContainer").style.display = "none";
+});
+
+window.addEventListener("click", function(event) {
+    if (event.target == document.getElementById("popupContainer")) {
+        document.getElementById("popupContainer").style.display = "none";
+    }
+});
+
+document.getElementById("movieScreeningForm").addEventListener("submit", function(event) {
+    event.preventDefault(); // Prevent the form from submitting traditionally
+
+    // Get form data
+    var formData = new FormData(this);
+
+    // Create an object from form data
+    var movieScreening = {};
+    formData.forEach(function(value, key){
+        movieScreening[key] = value;
+    });
+
+    // Send the movie screening data to the server (you can use AJAX to send the data)
+    console.log("Movie Name: " + movieScreening.movieName);
+    console.log("Screening Date: " + movieScreening.screeningDate);
+    console.log("Screening Time: " + movieScreening.screeningTime);
+
+    $.post('@Url.Action("AddScreening")', {
+        movieName: movieScreening.movieName,
+        movieDate: movieScreening.screeningDate,
+        movieTime: movieScreening.screeningTime
+    }).done(function (d) 
+    {
+        document.getElementById("popupContainer").style.display = "none";
+                    console.log("Success")
+                })
+                .fail(function(xhr,status,error){
+                    console.error("error" + error)
+                });
+});
+  </script>
+</html>
