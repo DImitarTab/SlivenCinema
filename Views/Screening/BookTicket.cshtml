@@ -65,7 +65,19 @@
                     <div class="hall">
                         <div class="screen">Screen here</div>
                         <ol class="rows">
-                            <li class="row row--1">
+                            @for (var i = 0; i < 8; i++)
+                            {
+                                <li class="row row-1">
+                                    @for (var j = 1; j < 10; j++)
+                                    {
+                                        <label>
+                                            1A
+                                            <input type="checkbox" class="seats" data-seat="1A" />
+                                        </label>        
+                                    }
+                                </li>
+                            }
+                            @*<li class="row row--1">
                                 <label>
                                     1A
                                     <input type="checkbox" class="seats" data-seat="1A" />
@@ -400,7 +412,7 @@
                                     8J
                                     <input type="checkbox" class="seats" data-seat="8J" />
                                 </label>
-                            </li>
+                            </li>*@
                         </ol>
                     </div>
                     <input type="submit" value="Submit" />

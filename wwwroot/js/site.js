@@ -2,19 +2,6 @@ let selectedSeats = [];
 const urlParams = new URLSearchParams(window.location.search);
 const myTime = urlParams.get("time");
 
-// $(".seats").click(function() {
-//   selectedSeats = [];
-//   $(".seats:checked").each(function() {
-//     var test = this.checked ? $(this).data("seat") : "";
-//     selectedSeats.push(test);
-//   });
-//   $(".form-seats").val(selectedSeats.join(", "));
-//   $(this).toggleClass("clicked");
-//   $(this)
-//     .parent()
-//     .toggleClass("selected");
-// });
-
 $(function() {
   let url = new URL(document.location);
   let params = url.searchParams;
@@ -61,3 +48,118 @@ $(document).ready(function () {
     //    //    });
     //}
 });
+
+$(document).ready(function () {
+    $(".openPopup").on('click', function () {
+        $(".popupContainer").show();
+    });
+
+    $(".close").on('click', function () {
+        $(".popupContainer").hide();
+    });
+
+    $(window).on('click', function (e) {
+        if (e.target == $(".popupContainer")) {
+            $(".popupContainer").hide();
+        }
+    });
+});
+
+
+//document.getElementById("movieScreeningForm").addEventListener("submit", function (event) {
+//    event.preventDefault(); // Prevent the form from submitting traditionally
+
+//    // Get form data
+//    var formData = new FormData(this);
+
+//    // Create an object from form data
+//    var movieScreening = {};
+//    formData.forEach(function (value, key) {
+//        movieScreening[key] = value;
+//    });
+
+//    // Send the movie screening data to the server (you can use AJAX to send the data)
+//    console.log("Movie Name: " + movieScreening.movieName);
+//    console.log("Screening Date: " + movieScreening.screeningDate);
+//    console.log("Screening Time: " + movieScreening.screeningTime);
+
+//    $.post('@Url.Action("AddScreening")', {
+//        movieName: movieScreening.movieName,
+//        movieDate: movieScreening.screeningDate,
+//        movieTime: movieScreening.screeningTime
+//    }).done(function (d) {
+//        document.getElementsByClassName("popupContainer").style.display = "none";
+//        console.log("Success")
+//    })
+//        .fail(function (xhr, status, error) {
+//            console.error("error" + error)
+//        });
+//});
+
+$(document).ready(function () {
+    $("#movieCreationForm").on("submit", function (event) {
+        event.preventDefault(); // Prevent the form from submitting traditionally
+
+        // Get form data
+        var formData = new FormData(this);
+
+        // Create an object from form data
+        var movieScreening = {};
+        formData.forEach(function (value, key) {
+            movieScreening[key] = value;
+        });
+
+        // Send the movie screening data to the server (you can use AJAX to send the data)
+        console.log("Movie Name: " + movieScreening.movieName);
+        console.log("rating : " + movieScreening.movieRating);
+        console.log("genre: " + movieScreening.movieGenre);
+        console.log("release Time: " + movieScreening.releaseDate);
+
+
+        $.post('/Home/AddMovie', {
+            movieName: movieScreening.movieName,
+            releaseDate: movieScreening.releaseDate,
+            movieGenre: movieScreening.movieGenre,
+            movieRating: movieScreening.movieRating
+        }).done(function (d) {
+            $(".popupContainer").hide();
+            console.log("Success")
+        })
+            .fail(function (xhr, status, error) {
+                console.error("error" + error)
+            });
+    });
+});
+
+//document.getElementById("movieCreationForm").addEventListener("submit", function (event) {
+//    event.preventDefault(); // Prevent the form from submitting traditionally
+
+//    // Get form data
+//    var formData = new FormData(this);
+
+//    // Create an object from form data
+//    var movieScreening = {};
+//    formData.forEach(function (value, key) {
+//        movieScreening[key] = value;
+//    });
+
+//    // Send the movie screening data to the server (you can use AJAX to send the data)
+//    console.log("Movie Name: " + movieScreening.movieName);
+//    console.log("rating : " + movieScreening.movieRating);
+//    console.log("genre: " + movieScreening.movieGenre);
+//    console.log("release Time: " + movieScreening.releaseDate);
+
+
+//    $.post('Home/AddMovie', {
+//        movieName: movieScreening.movieName,
+//        releaseDate: movieScreening.releaseDate,
+//        movieGenre: movieScreening.movieGenre,
+//        movieRating: movieScreening.movieRating
+//    }).done(function (d) {
+//        document.getElementsByClassName("popupContainer").style.display = "none";
+//        console.log("Success")
+//    })
+//        .fail(function (xhr, status, error) {
+//            console.error("error" + error)
+//        });
+//});

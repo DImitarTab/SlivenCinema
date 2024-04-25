@@ -11,9 +11,9 @@
       href="https://fonts.googleapis.com/css?family=Open+Sans"
       rel="stylesheet"
     />
-   <link href="content/css/site.css" rel="stylesheet"/>
+   
   </head>
-  <style>
+  @*<style>
       #popupContainer {
           color: black;
     display: none;
@@ -59,7 +59,7 @@
     cursor: pointer;
 }
   </style>
-
+*@
   <body>
     <div class="container">
       <header class="header">
@@ -75,22 +75,22 @@
           </ul>
         </nav>
         <div class="main-panel">
-            <div id="popupContainer">
+            <div class="popupContainer">
                 <div class="popupContent">
                     <span class="close">&times;</span>
-            <h1>Add Movie Screening</h1>
-            <form id="movieScreeningForm">
-                <label for="movieName">Movie Name:</label>
-                <input type="text" id="movieName" name="movieName" required><br><br>
+                    <h1>Add Movie Screening</h1>
+                    <form id="movieScreeningForm">
+                        <label for="movieName">Movie Name:</label>
+                        <input type="text" id="movieName" name="movieName" required><br><br>
 
-                <label for="screeningDate">Screening Date:</label>
-                <input type="date" id="screeningDate" name="screeningDate" required><br><br>
+                        <label for="screeningDate">Screening Date:</label>
+                        <input type="date" id="screeningDate" name="screeningDate" required><br><br>
 
-                <label for="screeningTime">Screening Time:</label>
-                <input type="time" id="screeningTime" name="screeningTime" required><br><br>
+                        <label for="screeningTime">Screening Time:</label>
+                        <input type="time" id="screeningTime" name="screeningTime" required><br><br>
 
-                <button type="submit">Add Screening</button>
-            </form>
+                        <button type="submit">Add Screening</button>
+                    </form>
                 </div>
              </div>
           <div class="title-block">
@@ -129,7 +129,7 @@
                   <a href="../book-ticket.html?time=18:00&movie=96">18:00</a>
                 </div>
                 <div class="time-container">
-                  <button id="openPopup">+</button>
+                  <button class="openPopup">+</button>
                 </div>
               </div>
               <span> Wednesday, 25 September </span>
@@ -158,20 +158,38 @@
   </body>
 
   <script>
-      document.getElementById("openPopup").addEventListener("click", function() {
-    document.getElementById("popupContainer").style.display = "block";
-});
 
-// Close the popup when the close button or outside the popup is clicked
-document.querySelector(".close").addEventListener("click", function() {
-    document.getElementById("popupContainer").style.display = "none";
-});
+      $(document).ready(function() {
+          $(".openPopup").on('click', function(){
+              var reusableForm = $(this).closest('.popupContainer');
+              $(".popupContainer").show();
+          });
+          
+          $(".close").on('click', function(){
+              $(".popupContainer").hide();
+          });
 
-window.addEventListener("click", function(event) {
-    if (event.target == document.getElementById("popupContainer")) {
-        document.getElementById("popupContainer").style.display = "none";
-    }
-});
+          $(window).on('click', function(e) {
+              if(e.target == $(".popupContainer")) {
+                  $(".popupContainer").hide();
+              }         
+          });
+      });
+
+//      document.getElementsByClassName("openPopup").addEventListener("click", function() {
+//    document.getElementByClassName("popupContainer").style.display = "block";
+//});
+
+//// Close the popup when the close button or outside the popup is clicked
+//document.querySelector(".close").addEventListener("click", function() {
+//    document.getElementsByClassName("popupContainer").style.display = "none";
+//});
+
+//window.addEventListener("click", function(event) {
+//    if (event.target == document.getElementsByClassName("popupContainer")) {
+//        document.getElementsByClassName("popupContainer").style.display = "none";
+//    }
+//});
 
 document.getElementById("movieScreeningForm").addEventListener("submit", function(event) {
     event.preventDefault(); // Prevent the form from submitting traditionally
@@ -196,7 +214,7 @@ document.getElementById("movieScreeningForm").addEventListener("submit", functio
         movieTime: movieScreening.screeningTime
     }).done(function (d) 
     {
-        document.getElementById("popupContainer").style.display = "none";
+        document.getElementsByClassName("popupContainer").style.display = "none";
                     console.log("Success")
                 })
                 .fail(function(xhr,status,error){

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SlivenCinema.Models;
+using SlivenCinema.Models.enums;
 using SlivenCinema.ViewModel;
 using System.Diagnostics;
 using System.Net;
@@ -26,15 +27,15 @@ namespace SlivenCinema.Controllers
 			return View();
 		}
 
-		public async Task<ActionResult<List<Movie>>> AddMovie(Movie movie)
-		{
-			Movie movie1 = new Movie();
-			movie1.Title = "Avengers";
-			_context.Movies.Add(movie1);
-			await _context.SaveChangesAsync();
-			return Ok(await _context.Movies.ToListAsync());
+		//public async Task<ActionResult<List<Movie>>> AddMovie(Movie movie)
+		//{
+		//	Movie movie1 = new Movie();
+		//	movie1.Title = "Avengers";
+		//	_context.Movies.Add(movie1);
+		//	await _context.SaveChangesAsync();
+		//	return Ok(await _context.Movies.ToListAsync());
 
-		}
+		//}
 
 		[HttpPost]
 		public ActionResult SelectMovie(TimeSpan movieTime, string movieName)
@@ -43,6 +44,7 @@ namespace SlivenCinema.Controllers
 			return RedirectToAction("BookTicket", "Screening", new {movieTime, movieName});
 		}
 
+		[HttpPost]
 		public ActionResult AddScreening(string movieName, DateTime movieDate, TimeSpan movieTime)
 		{
 			
@@ -81,6 +83,29 @@ namespace SlivenCinema.Controllers
 			else return Ok("helo");
 			// If model state is not valid, return a bad request response
 			
+		}
+
+		public ActionResult AddMovie(string movieName, DateTime releaseDate, MovieGenres movieGenres, double movieRating)
+		{
+
+			var movie = _context.Movies.Where(x => x.Title == movieName).FirstOrDefault();
+
+			if (movie == null)
+			{
+				Movie newMovie = new Movie();
+				newMovie.Rating = movieRating;
+				newMovie.Title = movieName;
+				newMovie.ReleaseDate = releaseDate;
+				newMovie.Genre = movieGenres;
+				newMovie.Screening = new List<Screening>();
+
+				_context.Add(newMovie);
+				_context.SaveChanges();
+				return Ok("hello");
+			}
+			else return Ok("helo");
+			// If model state is not valid, return a bad request response
+
 		}
 		public async Task<ActionResult> ComingSoon()
 		{
