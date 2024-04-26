@@ -1,25 +1,43 @@
-let selectedSeats = [];
 const urlParams = new URLSearchParams(window.location.search);
-const myTime = urlParams.get("time");
 
-$(function() {
-  let url = new URL(document.location);
-  let params = url.searchParams;
-  let paper = params.get("movie");
-  $(".movie-select").val(paper);
+$(document).ready(function() {
+    let url = new URL(document.location);
+    let params = url.searchParams;
+    let movieName = params.get("movieName");
+    let movieTime = params.get("movieTime");
 
-  $(".seats").on("click", function() {
-    selectedSeats = [];
-    $(".seats:checked").each(function() {
-      var test = this.checked ? $(this).data("seat") : "";
-      selectedSeats.push(test);
+
+
+    
+    let selectedSeats = [];
+    $(".seats").on("click", function () {
+        $(this).toggleClass("selected");
+        var index = selectedSeats.indexOf($(this).data('seatnum'));
+        if (index === -1) {
+            selectedSeats.push($(this).data('seatnum'));
+        } else {
+            selectedSeats.splice(index, 1);
+        }
+        console.log(selectedSeats);
     });
-    $(".form-seats").val(selectedSeats.join(", "));
-    $(this).toggleClass("clicked");
-    $(this).parent().toggleClass("selected");
-      console.log(this);
-      //console.log("as " + $(this));
-  });
+
+
+
+    $(".sbt-button").on("click", function () {
+        $.post('/Screening/BookTicket', {
+            selectSeats: selectedSeats,
+            movieName: movieName,
+            movieTime: movieTime
+
+        })
+            .done(function (d) {
+                location.reload();
+                console.log("Success")
+        })
+            .fail(function (xhr, status, error) {
+                console.error("error" + error)
+            });
+    });  
 });
 
 $(document).ready(function () {

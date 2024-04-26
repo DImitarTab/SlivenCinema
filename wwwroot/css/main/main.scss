@@ -1,26 +1,34 @@
-
+html{
+    height:100%;
+}
 
 body {
   box-sizing: border-box;
+  height:100%;
+}
+
+
+.container {
+    display: flex;
+    flex-direction: column;
+    font-family: "Open Sans", sans-serif;
+    color: $font-color;
+    width: 100%;
+    height: 100%;
+    background-color: #7662fc;
 }
 
 .header {
   display: flex;
   width: 100%;
   background-color: #ff424f;
-}
-
-.container {
-  font-family: "Open Sans", sans-serif;
-  color: $font-color;
-  width: 100%;
-  background-color: #7662fc;
+  flex-basis:5%;
 }
 
 .main-body {
-  display: flex;
-  background: $lighter-background;
-  min-height: 92.7vh;
+    display: flex;
+    background: $lighter-background;
+    flex-basis: 95%;
 }
 
 .about {
@@ -242,14 +250,47 @@ nav {
 }
 
 .hall {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  color: $lighter-background;
-  // background: white;
-  font-weight: bold;
+    display: grid;
+    grid-template-columns: repeat(10, 50px); /* Adjust the number of columns and size as needed */
+    gap: 10px;
+    color: $lighter-background;
+    // background: white;
+    font-weight: bold;
+    margin-top: 50px;
 }
+
+.seats {
+    width: 50px;
+    height: 50px;
+    background-color: #ffda79;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &.selected {
+        background-color: red;
+    }
+
+    &.occupied {
+        background-color: red;
+    }
+
+    &:hover {
+        background-color: yellowgreen;
+    }
+}
+
+.screen {
+    grid-column: 1 / -1;
+    background-color: #333;
+    color: #FFF;
+    text-align: center;
+    padding: 10px 0;
+    margin:0 100px 50px 100px;
+}
+
 
 .time-container {
   background: red;
@@ -268,7 +309,7 @@ nav {
   display: flex;
 }
 
-li > label {
+/*li > label {
     display: flex;
     padding: 10px;
     margin: 2px;
@@ -282,16 +323,9 @@ li > label {
     &:hover {
         background-color: yellowgreen;
     }
-}
+}*/
 
-.screen {
-  display: inline-block;
-  width: 80%;
-  border: 1px solid $black;
-  text-align: center;
-  margin: 50px 0;
-  background-color: #7662fc;
-}
+
 
 .screening-block {
   margin: 60px 100px 0 320px;

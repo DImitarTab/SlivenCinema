@@ -1,4 +1,4 @@
-﻿@model SlivenCinema.ViewModel.ScreeningViewModel
+﻿@model SlivenCinema.Models.Screening
 @{
     //string movieName = ViewBag.MovieName;
     //TimeSpan screenTime = ViewBag.ScreeningTime;
@@ -12,7 +12,7 @@
     <title>Book a ticket</title>
     <link href="https://fonts.googleapis.com/css?family=Bungee+Shade" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-    <link href="~/content/css/site.css" rel="stylesheet"/>
+    @*<link href="~/content/css/site.css" rel="stylesheet"/>*@
     @*<script
       type="text/javascript"
       src="~/js/site.js"
@@ -34,7 +34,7 @@
               </ul>
             </nav>
             <div class="main-panel third-panel">
-                <form class="selection-form">
+                <div class="selection-form">
                     <div class="heading heading--title">
                         <h2>Movie seat reservation</h2>
                     </div>
@@ -64,18 +64,19 @@
                     </div>
                     <div class="hall">
                         <div class="screen">Screen here</div>
-                        <ol class="rows">
-                            @for (var i = 0; i < 8; i++)
+                        
+                            @for (var i = 0; i < 80; i++)
                             {
-                                <li class="row row-1">
-                                    @for (var j = 1; j < 10; j++)
-                                    {
-                                        <label>
-                                            1A
-                                            <input type="checkbox" class="seats" data-seat="1A" />
-                                        </label>        
-                                    }
-                                </li>
+
+                            if (@Model.Seats.ElementAt(i).isTaken)
+                            {
+                                <div class="seats selected" data-seatNum="@Model.Seats.ElementAt(i).SeatNumber" style="pointer-events: none;">@Model.Seats.ElementAt(i).SeatNumber</div>
+                            }
+                            else
+                            {
+                                <div class="seats" data-seatNum="@Model.Seats.ElementAt(i).SeatNumber">@Model.Seats.ElementAt(i).SeatNumber</div>
+                            }
+
                             }
                             @*<li class="row row--1">
                                 <label>
@@ -413,11 +414,10 @@
                                     <input type="checkbox" class="seats" data-seat="8J" />
                                 </label>
                             </li>*@
-                        </ol>
                     </div>
-                    <input type="submit" value="Submit" />
+                    <button class="sbt-button" type="submit" value="Submit">submit</button>
                      @*@Html.RenderPartial("CinemaLayout");*@
-                </form>
+                </div>
             </div>
         </section>
     </div>
