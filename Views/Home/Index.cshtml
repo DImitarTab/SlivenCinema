@@ -68,17 +68,18 @@
         <div class="heading heading--air-date">
           <h2>24 September - 30 september</h2>
           <button class="openPopup">+</button>
+                  <hr />
         </div>
-        <hr />
-        <div class="movie-row first">
+      
+    
           @for(var i=0; i<Model.Count(); i++){
               <div class="poster-container">
             <div class="rating"><span>@Model[i].Rating</span></div>
             <a href="@Url.Action("Movie", "Home", new { movieID=Model[i].MovieID})" class="poster-link" data-movieid="@Model[i].MovieID" title="Кликнете тук за страницата на филма Tango and Cash">
               <img
                 class="movie-poster"
-                src="images/avatar.jpg"
-                alt="Tango and cash"
+                src="images/@(Model[i].Title).jpg"
+                alt="@Model[i].Title"
               />
               <p class="poster-name">@Model[i].Title</p>
               <p class="poster-genre">@Model[i].Genre</p>
@@ -184,8 +185,8 @@
               <p class="poster-genre">Comedy</p>
             </a>
           </div>
-        </div>
-        <div class="movie-row second">
+        
+       
           <div class="poster-container">
             <div class="rating"><span>6.8</span></div>
             <a
@@ -258,7 +259,7 @@
               <p class="poster-genre">Action, Thriller, Crime</p>
             </a>
           </div>
-        </div>
+ 
         <!-- This is the movies panel -->
       </div>
     </section>  

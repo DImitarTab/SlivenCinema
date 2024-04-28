@@ -285,12 +285,18 @@ h2 {
 }
 
 .main-panel {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   width: 100%;
+  gap: 20px;
   animation: fadeIn 0.5s linear;
   animation-fill-mode: both;
+  padding: 40px;
+}
+
+.heading--air-date {
+  padding-top: 50px;
+  grid-column: 1/-1;
 }
 
 .second-panel {
@@ -630,10 +636,6 @@ input:focus::-webkit-input-placeholder {
   flex-wrap: wrap;
   padding: 50px 0;
   border-bottom: 1px solid rgba(0, 0, 0, 0.212);
-}
-
-.heading--air-date {
-  padding-top: 50px;
 }
 
 .heading--title {
