@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@model SlivenCinema.Models.Movie
+
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -13,53 +15,6 @@
     />
    
   </head>
-  @*<style>
-      #popupContainer {
-          color: black;
-    display: none;
-    position: fixed;
-    z-index: 9999;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,0.5);
-    overflow: auto;
-}
-
-/* Popup content */
-.popupContent {
-    background-color: #fefefe;
-    color: black;
-    margin: 15% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 50%;
-    max-width: 500px;
-    text-align: center;
-    position: relative;
-}
-
-/* Close button */
-.close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-    position: absolute;
-    top: 0;
-    right: 10px;
-    cursor: pointer;
-}
-
-.close:hover,
-.close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-}
-  </style>
-*@
   <body>
     <div class="container">
       <header class="header">
@@ -89,6 +44,8 @@
                         <label for="screeningTime">Screening Time:</label>
                         <input type="time" id="screeningTime" name="screeningTime" required><br><br>
 
+                        <input type="hidden" name="movieId" value="@Model.MovieID"></input>
+
                         <button type="submit">Add Screening</button>
                     </form>
                 </div>
@@ -100,7 +57,7 @@
               alt="96 movie poster"
             />
             <div class="information">
-              <div class="heading heading--name"><h2>96</h2></div>
+              <div class="heading heading--name"><h2>@Model.Title</h2></div>
               <hr />
               <div class="side-info">
                 <time class="duration">2h 38min</time>
@@ -157,7 +114,7 @@
     </div>
   </body>
 
-  <script>
+@*  <script>
 
       $(document).ready(function() {
           $(".openPopup").on('click', function(){
@@ -221,5 +178,5 @@ document.getElementById("movieScreeningForm").addEventListener("submit", functio
                     console.error("error" + error)
                 });
 });
-  </script>
+  </script>*@
 </html>

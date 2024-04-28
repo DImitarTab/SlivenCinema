@@ -5,8 +5,24 @@ $(document).ready(function() {
     let params = url.searchParams;
     let movieName = params.get("movieName");
     let movieTime = params.get("movieTime");
-
-
+    
+    
+    console.log(this)
+    //$(".poster-link").on("click", function () {
+    //    var movieId = $(this).data('movieid');
+    //    console.log(movieId)
+    //    console.log(this)
+    //    $.post('/Home/Movie', {
+    //        movieId: movieId
+    //    })
+    //        .done(function (d) {
+    //            window.location.href = "/Home/Movie";
+    //            console.log("Success")
+    //        })
+    //        .fail(function (xhr, status, error) {
+    //            console.error("error" + error)
+    //        });
+    //});
 
     
     let selectedSeats = [];
@@ -146,6 +162,35 @@ $(document).ready(function () {
             .fail(function (xhr, status, error) {
                 console.error("error" + error)
             });
+    });
+});
+
+
+$(document).ready(function () {
+    $("#movieScreeningForm").on("submit", function (event) {
+        event.preventDefault(); 
+
+        var formData = new FormData(this);
+
+        var movieScreening = {};
+        formData.forEach(function (value, key) {
+            movieScreening[key] = value;
+        });
+        console.log(movieScreening);
+
+
+        $.post('/Home/AddScreening', {
+            movieName: movieScreening.movieName,
+            screeningDate: movieScreening.screeningDate,
+            screeningTime: movieScreening.screeningTime,
+            movieId: movieScreening.movieId
+        }).done(function (d) {
+            $(".popupContainer").hide();
+            console.log("Success")
+        })
+          .fail(function (xhr, status, error) {
+                console.error("error" + error)
+           });
     });
 });
 

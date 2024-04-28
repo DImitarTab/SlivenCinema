@@ -17,10 +17,11 @@ namespace SlivenCinema.Controllers
 			_context = context;
 		}	
 
-		public IActionResult Index()
+		public ActionResult Index()
 		{
+			var movieList = _context.Movies.Include(x=> x.Screening).ToList();
 
-			return View();
+			return View(movieList);
 		}
 
 		public IActionResult Privacy()
@@ -28,35 +29,19 @@ namespace SlivenCinema.Controllers
 			return View();
 		}
 
-		//public async Task<ActionResult<List<Movie>>> AddMovie(Movie movie)
-		//{
-		//	Movie movie1 = new Movie();
-		//	movie1.Title = "Avengers";
-		//	_context.Movies.Add(movie1);
-		//	await _context.SaveChangesAsync();
-		//	return Ok(await _context.Movies.ToListAsync());
-
-		//}
 
 		[HttpPost]
 		public ActionResult SelectMovie(TimeSpan movieTime, string movieName)
-		{
-			var screenView = new ScreeningViewModel() { movieName = movieName, movieTime = movieTime };
+		{		
 			return RedirectToAction("BookTicket", "Screening", new {movieTime, movieName});
 		}
 
 		[HttpPost]
-		public ActionResult AddScreening(string movieName, DateTime movieDate, TimeSpan movieTime)
+		public ActionResult AddScreening(string movieName, DateTime screeningDate, TimeSpan screeningTime, int movieId)
 		{
 			
 
-			DateTime screenDate = movieDate.Date.Add(movieTime);
-			//Movie  movie = new Movie();
-			//movie.Title = "Avengers";
-			//movie.Genre = Models.enums.MovieGenres.Action;
-			//movie.Rating = 2.0;
-			//movie.ReleaseDate =DateTime.Now;
-			//_context.Add(movie);
+			DateTime screenDate = screeningDate.Date.Add(screeningTime);
 
 			var seats = new List<Seat>();
 			for (int i = 1; i <= 8; i++)
@@ -69,20 +54,26 @@ namespace SlivenCinema.Controllers
 				}
 			}
 
-			var screenings = _context.Screenings.Where(x => x.Time.TimeOfDay == movieTime && x.MovieName == movieName && x.Time.Date == movieDate).FirstOrDefault();
-
+			var screenings = _context.Screenings
+				.Where(x => x.Time.TimeOfDay == screeningTime && x.MovieName == movieName && x.Time.Date == screeningDate)
+				.FirstOrDefault();
+			var screeningMovieId = _context.Movies.Include(x=>x.Screening).Where(x=>x.MovieID==movieId).FirstOrDefault();
 			if (screenings == null)
 			{
-				Screening newScreening = new Screening();
-				newScreening.Seats = seats;
-				newScreening.MovieName = movieName;
-				newScreening.Time = screenDate;
+				Screening newScreening = new Screening() { Seats=seats,MovieName=movieName, Time=screenDate};
+				
 				_context.Add(newScreening);
+
 				_context.SaveChanges();
+
+				screeningMovieId.Screening.Add(newScreening);
+				_context.SaveChanges();
+
 				return Ok("hello");
 			}
-			else return Ok("helo");
-			// If model state is not valid, return a bad request response
+
+			return Ok("helo");
+			
 			
 		}
 
@@ -105,7 +96,7 @@ namespace SlivenCinema.Controllers
 				return Ok("hello");
 			}
 			else return Ok("helo");
-			// If model state is not valid, return a bad request response
+			
 
 		}
 		public async Task<ActionResult> ComingSoon()
@@ -119,17 +110,17 @@ namespace SlivenCinema.Controllers
 			return View();
 		}
 		public ActionResult CinemaLayout(int EventID)
-		{
-			//var events = _context.Screenings.Where(x => x.EventID == EventID).ToList();
+		{			
 			
 			Screening eventModel = new Screening();
 			return PartialView(eventModel);
 
 		}
-		public async Task<ActionResult> Movie()
+		public ActionResult Movie(int movieId)
 		{
-
-			return View();
+			var movieID = _context.Movies.Where(x=>x.MovieID == movieId).FirstOrDefault();
+			
+			return View(movieID);
 		}
 		public List<Movie> getMovies()
 		{
