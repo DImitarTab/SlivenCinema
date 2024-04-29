@@ -1,8 +1,9 @@
 ﻿@model List<SlivenCinema.Models.Movie>
 
 @{
-    ViewData["Title"] = "Home Page";
+    Layout = "_Layout";
 }
+
 
 <!DOCTYPE html>
 
@@ -25,6 +26,7 @@
   </head>
 
   <body>
+    <div class="wrapper">
     <header class="header">
       <div class="header-name"><h1>Sliven Cinema</h1></div>
     </header>
@@ -33,7 +35,7 @@
         <ul>
           <li><a asp-area="" asp-controller="Home" asp-action="Index">This week</a></li>
           <li><a asp-area="" asp-controller="Home" asp-action="ComingSoon">Coming Soon</a></li>
-          <li><a asp-area="" asp-controller="Screening" asp-action="BookTicket">Book a ticket</a></li>
+          
           <li><a asp-area="" asp-controller="Home" asp-action="About">About the cinema</a></li>
         </ul>
       </nav>
@@ -48,7 +50,7 @@
                         <input type="text" id="movieName" name="movieName" required><br><br>
 
                         <label for="movieRating">Rating:</label>
-                        <input type="number" step="0.1" id="movieRating" name="movieRating" required><br><br>
+                        <input type="number" step="0.1" id="movieRating" name="movieRating" ><br><br>
 
                         <label for="movieDuration">Duration:</label>
                         <input type="number" id="movieDuration" name="movieDuration" required><br><br>
@@ -84,7 +86,7 @@
             <a href="@Url.Action("Movie", "Home", new { movieID=Model[i].MovieID})" class="poster-link" data-movieid="@Model[i].MovieID" title="Кликнете тук за страницата на филма Tango and Cash">
               <img
                 class="movie-poster"
-                src="images/@(Model[i].Title).jpg"
+                src="images/@(Model[i].ImagePath).jpg"
                 alt="@Model[i].Title"
               />
               <p class="poster-name">@Model[i].Title</p>
@@ -100,175 +102,12 @@
               </div>
           </div>
           }
-          <div class="poster-container">
-            <div class="rating"><span>6.8</span></div>
-            <a
-              class="poster-link"
-              asp-area="" asp-controller="Home" asp-action="Movie"
-              title="Кликнете тук за страницата на филма Tango and Cash"
-            >
-              <img
-                class="movie-poster"
-                src="images/tango-and-cash.jpg"
-                alt="Tango and cash"
-              />
-              <p class="poster-name">Avengers</p>
-              <p class="poster-genre">Action, Comedy, Crime</p>
-            </a>
-            <div class="projection projection--one">
-                <div class="time-container">
-                  <a href ="#" class="screening-time" data-time="14:30" data-moviename="Avengers">14:30</a>
-                </div>
-                <div class="time-container">
-                  <a href="#" class="screening-time" data-time="18:00" data-moviename="Avengers">18:00</a>
-                </div>
-               
-              </div>
-          </div>
-          <div class="poster-container">
-            <div class="rating"><span>7.2</span></div>
-            <a
-              class="poster-link"
-              href="more-html/a-simple-favor.html"
-              title="Кликнете тук за страницата на филма A simple favor"
-            >
-              <img
-                class="movie-poster"
-                src="images/a-simple-favor.jpg"
-                alt="A simple favor"
-              />
-              <p class="poster-name">A Simple favor</p>
-              <p class="poster-genre">Drama, Comedy, Crime</p>
-
-            </a>
-            
-          </div>
-          <div class="poster-container">
-            <div class="rating"><span>6.7</span></div>
-            <a
-              class="poster-link"
-              href="more-html/johnny-english-strikes-again.html"
-              title="Кликнете тук за страницата на филма Johnny English strikes again"
-            >
-              <img
-                class="movie-poster"
-                src="images/johnny-english-stirkes-again.jpg"
-                alt="Johnny English strikes again"
-              />
-              <p class="poster-name">Johnny English strikes again</p>
-              <p class="poster-genre">Action, Adventure, Comedy</p>
-            </a>
-          </div>
-          <div class="poster-container">
-            <div class="rating"><span>8.1</span></div>
-            <a
-              class="poster-link"
-              href="more-html/mission-impossible-fallout.html"
-              title="Кликнете тук за страницата на филма Mission Impossible: Fallout"
-            >
-              <img
-                class="movie-poster"
-                src="images/mission-impossible-fallout.jpg"
-                alt="Mission Impossible: Fallout"
-              />
-              <p class="poster-name">Mission: Impossible - Fallout</p>
-              <p class="poster-genre">Action, Adventure, Thriller</p>
-            </a>
-          </div>
-          <div class="poster-container">
-            <div class="rating"><span>5.6</span></div>
-            <a
-              class="poster-link"
-              href="more-html/night-school.html"
-              title="Кликнете тук за страницата на филма Night School"
-            >
-              <img
-                class="movie-poster"
-                src="images/night-school.jpg"
-                alt="Night School"
-              />
-              <p class="poster-name">Night School</p>
-              <p class="poster-genre">Comedy</p>
-            </a>
-          </div>
-        
-       
-          <div class="poster-container">
-            <div class="rating"><span>6.8</span></div>
-            <a
-              class="poster-link"
-              href="more-html/small-foot.html"
-              title="Кликнете тук за страницата на филма Small Foot"
-            >
-              <img
-                class="movie-poster"
-                src="images/small-foot.jpg"
-                alt="Small Foot"
-              />
-              <p class="poster-name">Small Foot</p>
-              <p class="poster-genre">Animation, Comedy, Adventure</p>
-            </a>
-          </div>
-          <div class="poster-container">
-            <div class="rating"><span>6.6</span></div>
-            <a
-              class="poster-link"
-              href="more-html/peppermint.html"
-              title="Кликнете тук за страницата на филма Peppermint "
-            >
-              <img
-                class="movie-poster"
-                src="images/peppermint.jpg"
-                alt="Peppermint"
-              />
-              <p class="poster-name">Peppermint</p>
-              <p class="poster-genre">Action, Drama, Thriller</p>
-            </a>
-          </div>
-          <div class="poster-container">
-            <div class="rating"><span>7.0</span></div>
-            <a
-              class="poster-link"
-              href="more-html/alpha.html"
-              title="Кликнете тук за страницата на филма Alpha"
-            >
-              <img class="movie-poster" src="images/alpha.jpg" alt="Alpha" />
-              <p class="poster-name">Alpha</p>
-              <p class="poster-genre">Adventure, Drama, Family</p>
-            </a>
-          </div>
-          <div class="poster-container">
-            <div class="rating"><span>8.0</span></div>
-            <a
-              class="poster-link"
-              href="more-html/venom.html"
-              title="Кликнете тук за страницата на филма Venom"
-            >
-              <img class="movie-poster" src="images/venom.jpg" alt="Venom" />
-              <p class="poster-name">Venom</p>
-              <p class="poster-genre">Action, Horror, Sci-fi</p>
-            </a>
-          </div>
-          <div class="poster-container">
-            <div class="rating"><span>7.0</span></div>
-            <a
-              class="poster-link"
-              href="more-html/the-equalizer-2.html"
-              title="Кликнете тук за страницата на филма The Equalizer 2"
-            >
-              <img
-                class="movie-poster"
-                src="images/the-equalizer-2.jpg"
-                alt="The Equalizer 2"
-              />
-              <p class="poster-name">The Equalizer 2</p>
-              <p class="poster-genre">Action, Thriller, Crime</p>
-            </a>
-          </div>
+         
  
         <!-- This is the movies panel -->
       </div>
     </section>  
+    </div>
   </body>
 
 

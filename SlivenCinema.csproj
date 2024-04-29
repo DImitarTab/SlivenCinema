@@ -23,7 +23,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="gosho\" />
     <Folder Include="Views\About\" />
     <Folder Include="Views\Movie\" />
     <Folder Include="wwwroot\css\fonts\" />

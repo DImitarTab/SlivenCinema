@@ -7,7 +7,12 @@ body {
   height:100%;
 }
 
-
+.wrapper {
+    height: 100%;
+    width: auto;
+    display: flex;
+    flex-direction:column;
+}
 .container {
     display: flex;
     flex-direction: column;
@@ -198,9 +203,7 @@ nav {
   // margin: 140px 0;
 }
 
-hr {
-  width: 80%;
-}
+
 
 .information {
   display: flex;

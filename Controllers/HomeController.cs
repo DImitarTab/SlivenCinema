@@ -5,6 +5,7 @@ using SlivenCinema.Models.enums;
 using SlivenCinema.ViewModel;
 using System.Diagnostics;
 using System.Net;
+using System.Text.RegularExpressions;
 
 namespace SlivenCinema.Controllers
 {
@@ -19,7 +20,7 @@ namespace SlivenCinema.Controllers
 
 		public ActionResult Index()
 		{
-			var movieList = _context.Movies.Include(x=> x.Screening).ToList();
+			var movieList = _context.Movies.Include(x=> x.Screening).Where(x=>x.ReleaseDate.Date<DateTime.Today).ToList();
 
 			return View(movieList);
 		}
@@ -90,6 +91,7 @@ namespace SlivenCinema.Controllers
 				newMovie.Description = movieDescription;
 				newMovie.Duration = movieDuration;
 				newMovie.ReleaseDate = releaseDate;
+				newMovie.ImagePath = Regex.Replace(movieName, @"[^\w\s]", "").Replace(" ", "-").ToLower();
 				newMovie.Genre = movieGenres;
 				newMovie.Screening = new List<Screening>();
 
@@ -103,8 +105,8 @@ namespace SlivenCinema.Controllers
 		}
 		public async Task<ActionResult> ComingSoon()
 		{
-
-			return View();
+			var movieList = _context.Movies.Include(x => x.Screening).Where(x=>x.ReleaseDate.Date>DateTime.Today).ToList();
+			return View(movieList);
 		}
 		public async Task<ActionResult> About()
 		{

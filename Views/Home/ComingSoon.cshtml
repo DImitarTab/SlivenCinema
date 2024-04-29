@@ -1,5 +1,7 @@
-﻿
+﻿@model List<SlivenCinema.Models.Movie>
 <!DOCTYPE html>
+
+
 
 <html lang="en">
   <head>
@@ -13,13 +15,7 @@
       href="https://fonts.googleapis.com/css?family=Open+Sans"
       rel="stylesheet"
     />
-    <link href="~/content/css/site.css" rel="stylesheet"/>
-
     
-    <script
-      type="text/javascript"
-      src="~/js/site.js"
-    ></script>
   </head>
 
   
@@ -36,74 +32,22 @@
           <li><a asp-area="" asp-controller="Screening" asp-action="BookTicket">About the cinema</a></li>
           </ul>
         </nav>
-        <div class="main-panel second-panel">
+        <div class="main-panel first-panel">
           <div class="heading heading--air-date">
             <h2>01 October - 07 October</h2>
+            <hr />
           </div>
-          <hr />
-          <div class="movie-row third">
-            <a
-              class="poster"
-              href="more-html/96.html"
-              title="Кликнете тук за страницата на филма 96"
-            >
-              <img class="movie-poster" src="~/images/96.jpg" alt="96" />
-              <p class="poster-name">96</p>
-              <p class="poster-genre">Romance</p>
-            </a>
-            <a
-              class="poster"
-              href="more-html/hunter-killer.html"
-              title="Кликнете тук за страницата на филма Hunter Killer"
-            >
-              <img
-                class="movie-poster"
-                src="images/hunter-killer.jpg"
-                alt="Hunter Killer"
-              />
-              <p class="poster-name">Hunter Killer</p>
-              <p class="poster-genre">Action, Thriller</p>
-            </a>
-            <a
-              class="poster"
-              href="more-html/bad-times-at-the-el-royal.html"
-              title="Кликнете тук за страницата на филма Bad Times at the El Royale"
-            >
-              <img
-                class="movie-poster"
-                src="images/bad-times-at-the-el-royale.jpg"
-                alt="Bad Times at the El Royale"
-              />
-              <p class="poster-name">Bad Times at the El Royale</p>
-              <p class="poster-genre">Thriller, Mystery</p>
-            </a>
-            <a
-              class="poster"
-              href="more-html/goosebumps-2.html"
-              title="Кликнете тук за страницата на филма Goosebumps 2: Haunted Halloween"
-            >
-              <img
-                class="movie-poster"
-                src="images/goosebumps-2.jpg"
-                alt="Goosebumps 2: Haunted Halloween"
-              />
-              <p class="poster-name">Goosebumps 2: Haunted Halloween</p>
-              <p class="poster-genre">Advnture, Comedy, Fantasy</p>
-            </a>
-            <a
-              class="poster"
-              href="more-html/overlord.html"
-              title="Кликнете тук за страницата на филма Overlord"
-            >
-              <img
-                class="movie-poster"
-                src="images/overlord.jpg"
-                alt="Overlord"
-              />
-              <p class="poster-name">Overlord</p>
-              <p class="poster-genre">Action, Horror, Thriller</p>
-            </a>
-          </div>
+              @for (var i = 0; i < @Model.Count(); i++)
+              {
+                  <div class="poster-container">
+                      <a class="poster" href="more-html/96.html" title="Кликнете тук за страницата на филма 96" >
+                          <img class="movie-poster" src="~/images/@(Model[i].ImagePath).jpg" alt="@(Model[i].Title)" />
+                          <p class="poster-name">@Model[i].Title</p>
+                          <p class="poster-genre">@Model[i].Genre</p>
+                      </a>
+                  </div>
+              }
+
           <!-- This is the movies panel -->
         </div>
       </section>

@@ -225,6 +225,13 @@ body {
   height: 100%;
 }
 
+.wrapper {
+  height: 100%;
+  width: auto;
+  display: flex;
+  flex-direction: column;
+}
+
 .container {
   display: flex;
   flex-direction: column;
@@ -407,10 +414,6 @@ nav {
 .date,
 .genre,
 .duration {
-  width: 80%;
-}
-
-hr {
   width: 80%;
 }
 

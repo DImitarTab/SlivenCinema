@@ -1,5 +1,9 @@
 const urlParams = new URLSearchParams(window.location.search);
 
+function setImage() {
+    $(".movie-poster").attr("src", "");
+}
+
 $(document).ready(function() {
     let url = new URL(document.location);
     let params = url.searchParams;
