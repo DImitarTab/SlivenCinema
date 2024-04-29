@@ -64,7 +64,8 @@ $(document).ready(function () {
         var dataName = $(this).data('moviename');
         var url = "Screening/BookTicket" + '?movieTime=' + encodeURIComponent(dataTime) + '&movieName=' + encodeURIComponent(dataName);
         console.log(dataTime);
-        window.location.href = url;
+        window.location.assign("Screening/BookTicket" + '?movieTime=' + encodeURIComponent(dataTime) + '&movieName=' + encodeURIComponent(dataName))
+       /* window.location.href = url;*/
         /*sendDataToController(dataTime,dataName);*/
     });
 
@@ -153,6 +154,8 @@ $(document).ready(function () {
         $.post('/Home/AddMovie', {
             movieName: movieScreening.movieName,
             releaseDate: movieScreening.releaseDate,
+            movieDescription: movieScreening.movieDescription,
+            movieDuration: movieScreening.movieDuration,
             movieGenre: movieScreening.movieGenre,
             movieRating: movieScreening.movieRating
         }).done(function (d) {

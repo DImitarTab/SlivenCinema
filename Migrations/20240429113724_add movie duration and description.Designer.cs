@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SlivenCinema;
 
@@ -11,9 +12,10 @@ using SlivenCinema;
 namespace SlivenCinema.Migrations
 {
     [DbContext(typeof(MovieContext))]
-    partial class MovieContextModelSnapshot : ModelSnapshot
+    [Migration("20240429113724_add movie duration and description")]
+    partial class addmoviedurationanddescription
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -29,13 +31,6 @@ namespace SlivenCinema.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MovieID"), 1L, 1);
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Duration")
-                        .HasColumnType("int");
 
                     b.Property<int>("Genre")
                         .HasColumnType("int");

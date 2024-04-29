@@ -37,7 +37,7 @@
           <li><a asp-area="" asp-controller="Home" asp-action="About">About the cinema</a></li>
         </ul>
       </nav>
-      <div class="main-panel">
+      <div class="main-panel first-panel">
 
           <div class="popupContainer">
                 <div class="popupContent">
@@ -48,9 +48,15 @@
                         <input type="text" id="movieName" name="movieName" required><br><br>
 
                         <label for="movieRating">Rating:</label>
-                        <input type="number" id="movieRating" name="movieRating" required><br><br>
+                        <input type="number" step="0.1" id="movieRating" name="movieRating" required><br><br>
 
-                        <label for="movieGenre">Screening Time:</label>
+                        <label for="movieDuration">Duration:</label>
+                        <input type="number" id="movieDuration" name="movieDuration" required><br><br>
+
+                        <label for="movieDescription">Description:</label>
+                        <input type="text" id="movieDescription" name="movieDescription" required><br><br>
+
+                        <label for="movieGenre">Genre:</label>
                         <select class="movie-select" name="movieGenre" id="movieGenre" required>
                                 <option value="" disabled selected>Select a genre</option>
                                 <option value="action">Action</option>

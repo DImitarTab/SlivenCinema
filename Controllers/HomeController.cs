@@ -77,7 +77,7 @@ namespace SlivenCinema.Controllers
 			
 		}
 
-		public ActionResult AddMovie(string movieName, DateTime releaseDate, MovieGenres movieGenres, double movieRating)
+		public ActionResult AddMovie(string movieName, DateTime releaseDate, MovieGenres movieGenres, double movieRating, string movieDescription, int movieDuration)
 		{
 
 			var movie = _context.Movies.Where(x => x.Title == movieName).FirstOrDefault();
@@ -87,6 +87,8 @@ namespace SlivenCinema.Controllers
 				Movie newMovie = new Movie();
 				newMovie.Rating = movieRating;
 				newMovie.Title = movieName;
+				newMovie.Description = movieDescription;
+				newMovie.Duration = movieDuration;
 				newMovie.ReleaseDate = releaseDate;
 				newMovie.Genre = movieGenres;
 				newMovie.Screening = new List<Screening>();
@@ -118,8 +120,9 @@ namespace SlivenCinema.Controllers
 		}
 		public ActionResult Movie(int movieId)
 		{
-			var movieID = _context.Movies.Where(x=>x.MovieID == movieId).FirstOrDefault();
-			
+			var movieID = _context.Movies.Include(x=>x.Screening).Where(x=>x.MovieID == movieId).FirstOrDefault();
+	
+	
 			return View(movieID);
 		}
 		public List<Movie> getMovies()

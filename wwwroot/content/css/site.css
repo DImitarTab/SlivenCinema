@@ -285,12 +285,16 @@ h2 {
 }
 
 .main-panel {
+  width: 100%;
+  animation: fadeIn 0.5s linear;
+  animation-fill-mode: both;
+}
+
+.first-panel {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   width: 100%;
   gap: 20px;
-  animation: fadeIn 0.5s linear;
-  animation-fill-mode: both;
   padding: 40px;
 }
 
@@ -303,6 +307,13 @@ h2 {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+}
+
+.movie--panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .third-panel {
@@ -341,7 +352,7 @@ nav {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 10px;
+  width: 300px;
   color: aliceblue;
 }
 
@@ -386,7 +397,8 @@ nav {
 }
 
 .movie-poster {
-  width: 300px;
+  width: 100%;
+  min-width: 300px;
   height: 450px;
   box-shadow: 0 0 30px -2px #000;
 }

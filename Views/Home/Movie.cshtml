@@ -29,7 +29,7 @@
           <li><a asp-area="" asp-controller="Home" asp-action="About">About the cinema</a></li>
           </ul>
         </nav>
-        <div class="main-panel">
+        <div class="main-panel movie--panel">
             <div class="popupContainer">
                 <div class="popupContent">
                     <span class="close">&times;</span>
@@ -39,12 +39,12 @@
                         <input type="text" id="movieName" name="movieName" required><br><br>
 
                         <label for="screeningDate">Screening Date:</label>
-                        <input type="date" id="screeningDate" name="screeningDate" required><br><br>
+                        <input type="date" min="@Model.ReleaseDate.Date.ToString("yyyy-MM-dd")" id="screeningDate" name="screeningDate" required><br><br>
 
                         <label for="screeningTime">Screening Time:</label>
                         <input type="time" id="screeningTime" name="screeningTime" required><br><br>
 
-                        <input type="hidden" name="movieId" value="@Model.MovieID"></input>
+                        <input type="hidden" name="movieId" value="@Model.MovieID" />
 
                         <button type="submit">Add Screening</button>
                     </form>
@@ -52,24 +52,29 @@
              </div>
           <div class="title-block">
             <img
-              src="../images/96.jpg"
+              src="../images/@(Model.Title).jpg"
               class="individual-movie"
-              alt="96 movie poster"
+              alt="@Model.Title"
             />
             <div class="information">
               <div class="heading heading--name"><h2>@Model.Title</h2></div>
               <hr />
               <div class="side-info">
-                <time class="duration">2h 38min</time>
-                <span class="ghost">|</span> <span class="genre">Romance</span>
+                <time class="duration">@(Model.Duration/60)h @(Model.Duration%60)m</time>
+                <span class="ghost">|</span> <span class="genre">@(Model.Genre)</span>
                 <span class="ghost">|</span>
-                <span class="date">4 October 2018 (France)</span>
+                @if (DateTime.Now.Year!=Model.ReleaseDate.Date.Year)
+                {
+                    <span class="date">@Model.ReleaseDate.Date.ToString("yyyy")</span>
+                    
+                }
+                else {
+                    <span class="date">@Model.ReleaseDate.Date.ToString("dd/MM/yyyy")</span>
+
+                }
               </div>
               <p class="summary-text">
-                A mute girl falls in love with a rogue and tries changing his
-                life for good. Will the change be perennial? Or will it be
-                temporary? New surprises that life brings on forms the crux of
-                the story.
+                @Model.Description
               </p>
               <hr />
             </div>
@@ -79,34 +84,17 @@
             <div class="screening-times">
               <span> Tuesday, 24 September </span>
               <div class="projection projection--one">
-                <div class="time-container">
-                  <a href="../Book-Ticket.html?time=16:00&movie=96">16:00</a>
-                </div>
-                <div class="time-container">
-                  <a href="../book-ticket.html?time=18:00&movie=96">18:00</a>
-                </div>
+                 @for(int i=0; i<@Model.Screening.Count(); i++)
+                     {
+                       <div class="time-container">
+                           <a href="" class="screening-time" data-time="@Model.Screening[i].Time.TimeOfDay" data-moviename="@Model.Title">@Model.Screening[i].Time.TimeOfDay.ToString("hh\\:mm")</a>
+                       </div>
+                     }
                 <div class="time-container">
                   <button class="openPopup">+</button>
                 </div>
               </div>
-              <span> Wednesday, 25 September </span>
-              <div class="projection projection--two">
-                <div class="time-container">
-                  <a href="../book-ticket.html?time=12:00&movie=96">12:00</a>
-                </div>
-                <div class="time-container">
-                  <a href="../book-ticket.html?time=20:00&movie=96">20:00</a>
-                </div>
-              </div>
-              <span> Friday, 27 September </span>
-              <div class="projection projection--three">
-                <div class="time-container">
-                  <a href="../book-ticket.html?time=16:00&movie=96">16:00</a>
-                </div>
-                <div class="time-container">
-                  <a href="../book-ticket.html?time=18:00&movie=96">18:00</a>
-                </div>
-              </div>
+ 
             </div>
           </div>
         </div>
