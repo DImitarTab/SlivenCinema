@@ -417,6 +417,10 @@ nav {
   width: 80%;
 }
 
+hr {
+  width: 100%;
+}
+
 .information {
   display: flex;
   flex-direction: column;

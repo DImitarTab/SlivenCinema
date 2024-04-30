@@ -68,7 +68,8 @@ $(document).ready(function () {
         var dataName = $(this).data('moviename');
         var url = "Screening/BookTicket" + '?movieTime=' + encodeURIComponent(dataTime) + '&movieName=' + encodeURIComponent(dataName);
         console.log(dataTime);
-        window.location.assign("Screening/BookTicket" + '?movieTime=' + encodeURIComponent(dataTime) + '&movieName=' + encodeURIComponent(dataName))
+        
+        window.location.assign("/" + "Screening/BookTicket" + '?movieTime=' + encodeURIComponent(dataTime) + '&movieName=' + encodeURIComponent(dataName))
        /* window.location.href = url;*/
         /*sendDataToController(dataTime,dataName);*/
     });
