@@ -25,6 +25,13 @@ namespace SlivenCinema.Controllers
 			return View(movieList);
 		}
 
+		public ActionResult RenderMovies(DateTime Today)
+		{
+			var movieList = _context.Movies.Include(x => x.Screening).ToList();
+
+			return PartialView(movieList);
+		}
+
 		public IActionResult Privacy()
 		{
 			return View();

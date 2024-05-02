@@ -4,6 +4,15 @@ function setImage() {
     $(".movie-poster").attr("src", "");
 }
 
+$(document).ready(function () {
+    var today = Date.now;
+    $.get('Home/RenderMovies', {
+        Today: today
+    }).done(function (d) {
+
+    });
+});
+
 $(document).ready(function() {
     let url = new URL(document.location);
     let params = url.searchParams;

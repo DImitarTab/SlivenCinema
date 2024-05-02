@@ -74,13 +74,23 @@
                 </div>
              </div>
         <div class="heading heading--air-date">
-          <h2>24 September - 30 september</h2>
-          <button class="openPopup">+</button>
+            @for (int i = 0; i < 7; i++)
+                    {
+                        <input class="input" name="tabs" type="radio" id="tab-@i" checked="checked" />
+                        <label class="label" for="tab-@i">@DateTime.Today.AddDays(i).DayOfWeek</label>
+                    }
+                   
+                    <button class="openPopup">+</button>
                   <hr />
         </div>
-      
+        <div class="full-panel">
+                    @{
+                        Html.RenderPartial("_Movies", Model);
+                    }
+        </div>
+               
     
-          @for(var i=0; i<Model.Count(); i++){
+          @* @for(var i=0; i<Model.Count(); i++){
               <div class="poster-container">
             <div class="rating"><span>@Model[i].Rating</span></div>
             <a href="@Url.Action("Movie", "Home", new { movieID=Model[i].MovieID})" class="poster-link" data-movieid="@Model[i].MovieID" title="Кликнете тук за страницата на филма Tango and Cash">
@@ -102,7 +112,7 @@
               </div>
           </div>
           }
-         
+          *@
  
         <!-- This is the movies panel -->
       </div>
