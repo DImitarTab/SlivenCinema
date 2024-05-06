@@ -5,15 +5,41 @@ function setImage() {
 }
 
 $(document).ready(function () {
-    var today = Date.now;
-    $.get('Home/RenderMovies', {
-        Today: today
-    }).done(function (d) {
+    $(".input").on("click", function () {
+        var today = $(this).data('screeningtime');
+        console.log(this);
 
+        console.log(today);
+        $.get('Home/_Movies', {
+            Today: today
+        }).done(function (d) {
+            $(".full-panel").empty();
+            $(".full-panel").append(d);
+        });
     });
+    
 });
+$(".input").on("click", function (evt) {
+    var i, tabcontent, tablinks;
+    var cityName = $(this).data("screeningtime");
+    // Get all elements with class="tabcontent" and hide them
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
 
-$(document).ready(function() {
+    // Get all elements with class="tablinks" and remove the class "active"
+    tablinks = document.getElementsByClassName("input");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+
+    // Show the current tab, and add an "active" class to the button that opened the tab
+    document.getElementById(cityName).style.display = "block";
+    evt.currentTarget.className += " active";
+});
+$(document).ready(function () {
+    
     let url = new URL(document.location);
     let params = url.searchParams;
     let movieName = params.get("movieName");

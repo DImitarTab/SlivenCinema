@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using SlivenCinema.Models;
 using SlivenCinema.Models.enums;
 using SlivenCinema.ViewModel;
+using SlivenCinema.ViewModels;
 using System.Diagnostics;
 using System.Net;
 using System.Text.RegularExpressions;
@@ -20,16 +21,66 @@ namespace SlivenCinema.Controllers
 
 		public ActionResult Index()
 		{
-			var movieList = _context.Movies.Include(x=> x.Screening).Where(x=>x.ReleaseDate.Date<DateTime.Today).ToList();
+			var Today = DateTime.Today;
+            var movieList = _context.Movies.Include(x => x.Screening).Where(x => x.Screening.Any(y => y.Time.Date == Today)).ToList();
 
-			return View(movieList);
+
+			var newMovieList = new List<MoviesListViewModel>();
+			for (int i = 0; i < movieList.Count; i++)
+			{
+                var newMovie = new MoviesListViewModel();
+                newMovie.Title = movieList[i].Title;
+                newMovie.Rating = movieList[i].Rating;
+                newMovie.ImagePath = movieList[i].ImagePath;
+
+                for (int j = 0; j < movieList[i].Screening.Count; j++)
+			    {
+
+					if (movieList[i].Screening[j].Time.Date == Today)
+					{
+                        newMovie.Screening.Add(movieList[i].Screening[j]);
+
+                    }
+
+                }
+                newMovieList.Add(newMovie);
+            }
+
+
+
+            return View(newMovieList);
 		}
 
-		public ActionResult RenderMovies(DateTime Today)
+        public PartialViewResult _Movies(DateTime Today)
 		{
-			var movieList = _context.Movies.Include(x => x.Screening).ToList();
+            var movieList = _context.Movies.Include(x=>x.Screening).Where(x => x.Screening.Any(y => y.Time.Date == Today)).ToList();
+            var movieList2 = _context.Movies.Include(x => x.Screening).ToList();
 
-			return PartialView(movieList);
+
+            var newMovieList = new List<MoviesListViewModel>();
+            for (int i = 0; i < movieList.Count; i++)
+            {
+                var newMovie = new MoviesListViewModel();
+                newMovie.Title = movieList[i].Title;
+                newMovie.Rating = movieList[i].Rating;
+                newMovie.ImagePath = movieList[i].ImagePath;
+
+                for (int j = 0; j < movieList[i].Screening.Count; j++)
+                {
+
+                    if (movieList[i].Screening[j].Time.Date == Today)
+                    {
+                        newMovie.Screening.Add(movieList[i].Screening[j]);
+
+                    }
+
+                }
+                newMovieList.Add(newMovie);
+            }
+
+
+
+            return PartialView("_Movies", newMovieList);
 		}
 
 		public IActionResult Privacy()
