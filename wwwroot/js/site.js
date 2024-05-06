@@ -5,6 +5,11 @@ function setImage() {
 }
 
 $(document).ready(function () {
+    $('#Movies-Today').click();
+
+});
+
+$(document).ready(function () {
     $(".input").on("click", function () {
         var today = $(this).data('screeningtime');
         console.log(this);
@@ -47,21 +52,21 @@ $(document).ready(function () {
     
     
     console.log(this)
-    //$(".poster-link").on("click", function () {
-    //    var movieId = $(this).data('movieid');
-    //    console.log(movieId)
-    //    console.log(this)
-    //    $.post('/Home/Movie', {
-    //        movieId: movieId
-    //    })
-    //        .done(function (d) {
-    //            window.location.href = "/Home/Movie";
-    //            console.log("Success")
-    //        })
-    //        .fail(function (xhr, status, error) {
-    //            console.error("error" + error)
-    //        });
-    //});
+    $(".poster-link").on("click", function () {
+        var movieId = $(this).data('movieid');
+        console.log(movieId)
+        console.log(this)
+        $.post('/Home/Movie', {
+            movieId: movieId
+        })
+            .done(function (d) {
+                window.location.href = "/Home/Movie";
+                console.log("Success")
+            })
+            .fail(function (xhr, status, error) {
+                console.error("error" + error)
+            });
+    });
 
     
     let selectedSeats = [];

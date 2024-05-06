@@ -24,43 +24,31 @@ namespace SlivenCinema.Controllers
 			var Today = DateTime.Today;
             var movieList = _context.Movies.Include(x => x.Screening).Where(x => x.Screening.Any(y => y.Time.Date == Today)).ToList();
 
-
-			var newMovieList = new List<MoviesListViewModel>();
-			for (int i = 0; i < movieList.Count; i++)
-			{
-                var newMovie = new MoviesListViewModel();
-                newMovie.Title = movieList[i].Title;
-                newMovie.Rating = movieList[i].Rating;
-                newMovie.ImagePath = movieList[i].ImagePath;
-
-                for (int j = 0; j < movieList[i].Screening.Count; j++)
-			    {
-
-					if (movieList[i].Screening[j].Time.Date == Today)
-					{
-                        newMovie.Screening.Add(movieList[i].Screening[j]);
-
-                    }
-
-                }
-                newMovieList.Add(newMovie);
-            }
-
-
+			var newMovieList = AddMovieViewModel(movieList, Today);
 
             return View(newMovieList);
 		}
 
+		
+
         public PartialViewResult _Movies(DateTime Today)
 		{
-            var movieList = _context.Movies.Include(x=>x.Screening).Where(x => x.Screening.Any(y => y.Time.Date == Today)).ToList();
-            var movieList2 = _context.Movies.Include(x => x.Screening).ToList();
+			var movieList = _context.Movies.Include(x => x.Screening).Where(x => x.Screening.Any(y => y.Time.Date == Today)).ToList();
+
+            var newMovieList = AddMovieViewModel(movieList, Today);
+
+            return PartialView("_Movies", newMovieList);
+		}
 
 
+        public List<MoviesListViewModel> AddMovieViewModel(List<Movie> movieList, DateTime Today)
+        {
             var newMovieList = new List<MoviesListViewModel>();
             for (int i = 0; i < movieList.Count; i++)
             {
                 var newMovie = new MoviesListViewModel();
+                newMovie.MovieID = movieList[i].MovieID;
+
                 newMovie.Title = movieList[i].Title;
                 newMovie.Rating = movieList[i].Rating;
                 newMovie.ImagePath = movieList[i].ImagePath;
@@ -78,12 +66,9 @@ namespace SlivenCinema.Controllers
                 newMovieList.Add(newMovie);
             }
 
-
-
-            return PartialView("_Movies", newMovieList);
-		}
-
-		public IActionResult Privacy()
+            return newMovieList;
+        }
+        public IActionResult Privacy()
 		{
 			return View();
 		}
