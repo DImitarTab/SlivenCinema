@@ -81,10 +81,11 @@
         </div>
                 <div class="full-panel">
                     
+                    
                         @for (var i = 0; i < Model.Count(); i++)
                         {
-
-                            <div class="poster-container">
+                        
+                        <div class="poster-container">
                                 <div class="rating">
                                     <span>@Model[i].Rating</span>
                                 </div>
@@ -99,13 +100,13 @@
                                     @for (var j = 0; j < Model[i].Screening.Count(); j++)
                                     {
                                         <div class="time-container">
-                                            <a href="#" class="screening-time" data-time="@Model[i].Screening[j].Time.TimeOfDay" data-moviename="@Model[i].Title">@Model[i].Screening[j].Time.TimeOfDay.ToString("hh\\:mm")</a>
+                                        <a href="@Url.Action("BookTicket", "Screening", new { movieTime=Model[i].Screening[j].Time, movieName=Model[i].Title})" class="screening-time" data-time="@Model[i].Screening[j].Time" data-moviename="@Model[i].Title">@Model[i].Screening[j].Time.TimeOfDay.ToString("hh\\:mm")</a>
                                         </div>
                                     }
                                 </div>
                             </div>
                         }
-                    }
+                    
                     
                 </div>         
         <!-- This is the movies panel -->

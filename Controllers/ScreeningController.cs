@@ -19,10 +19,9 @@ namespace SlivenCinema.Controllers
 		}
 
 	
-		
-		public ActionResult BookTicket(TimeSpan movieTime, string movieName)
+		public ActionResult BookTicket(DateTime movieTime, string movieName)
 		{
-			var seats = _context.Screenings.Include(x=>x.Seats).Where(x=>x.MovieName == movieName && x.Time.TimeOfDay == movieTime).FirstOrDefault();
+			var seats = _context.Screenings.Include(x=>x.Seats).Where(x=>x.MovieName == movieName && x.Time == movieTime).FirstOrDefault();
 			var screen = new Screening();
 			ViewBag.movieTime = movieTime;
 			ViewBag.movieName = movieName;
@@ -30,10 +29,11 @@ namespace SlivenCinema.Controllers
 			return View(seats);
 		}
 
-		[HttpPost]
-		public ActionResult BookTicket(List<string> selectSeats, TimeSpan movieTime, string movieName)
+        [HttpPost]
+
+        public ActionResult BookTicket(List<string> selectSeats, DateTime movieTime, string movieName)
 		{
-			var seats = _context.Screenings.Include(x => x.Seats).Where(s => s.MovieName == movieName && s.Time.TimeOfDay == movieTime).FirstOrDefault();
+			var seats = _context.Screenings.Include(x => x.Seats).Where(s => s.MovieName == movieName && s.Time == movieTime).FirstOrDefault();
 			
 			
 			for (int i = 0; i < seats.Seats.Count(); i++)

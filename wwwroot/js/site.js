@@ -4,13 +4,10 @@ function setImage() {
     $(".movie-poster").attr("src", "");
 }
 
-$(document).ready(function () {
-    $('#Movies-Today').click();
-
-});
 
 $(document).ready(function () {
     $(".input").on("click", function () {
+
         var today = $(this).data('screeningtime');
         console.log(this);
 
@@ -43,13 +40,15 @@ $(".input").on("click", function (evt) {
     document.getElementById(cityName).style.display = "block";
     evt.currentTarget.className += " active";
 });
+
 $(document).ready(function () {
     
     let url = new URL(document.location);
     let params = url.searchParams;
     let movieName = params.get("movieName");
     let movieTime = params.get("movieTime");
-    
+    console.log(movieTime)
+
     
     console.log(this)
     $(".poster-link").on("click", function () {
@@ -101,18 +100,33 @@ $(document).ready(function () {
 });
 
 $(document).ready(function () {
-    $('.screening-time').click(function (event) {
-        event.preventDefault();
+    //$('.screening-time').click(function (event) {
+    //    event.preventDefault();
         
-        var dataTime = $(this).data('time');
-        var dataName = $(this).data('moviename');
-        var url = "Screening/BookTicket" + '?movieTime=' + encodeURIComponent(dataTime) + '&movieName=' + encodeURIComponent(dataName);
-        console.log(dataTime);
+    //    var dataTime = $(this).data('time');
+    //    var dataName = $(this).data('moviename');
+
         
-        window.location.assign("/" + "Screening/BookTicket" + '?movieTime=' + encodeURIComponent(dataTime) + '&movieName=' + encodeURIComponent(dataName))
+    //    $.post('/Screening/BookTicket', {
+    //        movieTime: dataTime,
+    //        movieName: dataName
+    //    })
+    //        .done(function (d) {
+    //            window.location.href = "/Screening/BookTicket";
+    //            console.log("Success")
+    //        })
+    //        .fail(function (xhr, status, error) {
+    //            console.error("error" + error)
+    //        });
+    /*});*/
+
+        //var url = "Screening/BookTicket" + '?movieTime=' + encodeURIComponent(dataTime) + '&movieName=' + encodeURIComponent(dataName);
+        //console.log(dataTime);
+        
+        //window.location.assign("/" + "Screening/BookTicket" + '?movieTime=' + encodeURIComponent(dataTime) + '&movieName=' + encodeURIComponent(dataName))
        /* window.location.href = url;*/
         /*sendDataToController(dataTime,dataName);*/
-    });
+    /*});*/
 
     //function sendDataToController(dataTime, dataName) {
     //    console.log(dataTime);

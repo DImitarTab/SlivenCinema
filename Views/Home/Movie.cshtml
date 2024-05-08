@@ -89,7 +89,7 @@
                  @for(int i=0; i<@Model.Screening.Count(); i++)
                      {
                        <div class="time-container">
-                           <a href="" class="screening-time" data-time="@Model.Screening[i].Time.TimeOfDay" data-moviename="@Model.Title">@Model.Screening[i].Time.TimeOfDay.ToString("hh\\:mm")</a>
+                                    <a href="@Url.Action("BookTicket", "Screening", new { movieTime=Model.Screening[i].Time, movieName=Model.Title})" class="screening-time" data-time="@Model.Screening[i].Time" data-moviename="@Model.Title">@Model.Screening[i].Time.TimeOfDay.ToString("hh\\:mm")</a>
                        </div>
                      }
                 <div class="time-container">
