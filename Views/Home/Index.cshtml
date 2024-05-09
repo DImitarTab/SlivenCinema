@@ -19,7 +19,7 @@
       href="https://fonts.googleapis.com/css?family=Open+Sans"
       rel="stylesheet"
     />
-   
+   <style></style>
   </head>
 
   <body>
@@ -71,15 +71,29 @@
                 </div>
              </div>
         <div class="heading heading--air-date">
-
-                    @for (int i = 0; i < 7; i++)
+                    <ul class="tabs-controls">
+                        <li class="tabs-controls__item">
+                            <a href="#" class="tabs-controls__link input" data-screeningtime="@DateTime.Today.AddDays(0)" data-id="0">
+                                today
+                            </a>
+                        </li>
+                        @for (int i = 1; i < 7; i++)
+                        {
+                            <li class="tabs-controls__item">
+                                <a href="#" class="tabs-controls__link input" data-screeningtime="@DateTime.Today.AddDays(i)" data-id="i">
+                                    @DateTime.Today.AddDays(i).DayOfWeek
+                                </a>
+                            </li>
+                        }
+                    </ul>
+                  @*   @for (int i = 0; i < 7; i++)
                     {
                         <button class="input" data-screeningtime="@DateTime.Today.AddDays(i)">@DateTime.Today.AddDays(i).DayOfWeek</button>
                     }                    
-                    <button class="openPopup">+</button> 
-                  <hr />
+                    <button class="openPopup">+</button>  *@
+                 
         </div>
-                <div class="full-panel">
+                <div class="full-panel cards-container">
                     
                     
                         @for (var i = 0; i < Model.Count(); i++)
