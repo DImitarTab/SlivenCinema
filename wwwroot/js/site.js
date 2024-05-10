@@ -1,8 +1,23 @@
+
 const urlParams = new URLSearchParams(window.location.search);
 
 function setImage() {
     $(".movie-poster").attr("src", "");
 }
+
+const swiper = new Swiper('.home', {
+    // Optional parameters
+    direction: 'vertical',
+    loop: true,
+
+    // If we need pagination
+    pagination: {
+        el: '.swiper-pagination',
+    },
+
+    // Navigation arrows
+
+});
 
 
 $(document).ready(function () {

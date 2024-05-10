@@ -1,9 +1,9 @@
-﻿@model List<SlivenCinema.ViewModels.MoviesListViewModel>
+﻿@* @model List<SlivenCinema.ViewModels.MoviesListViewModel> *@
+@model List<SlivenCinema.Models.Movie>
 
 @{
     Layout = "_Layout";
 }
-
 
 <!DOCTYPE html>
 
@@ -31,13 +31,33 @@
       <nav>
         <ul>
           <li><a asp-area="" asp-controller="Home" asp-action="Index">This week</a></li>
-          <li><a asp-area="" asp-controller="Home" asp-action="ComingSoon">Coming Soon</a></li>
-          
+          <li><a asp-area="" asp-controller="Home" asp-action="ComingSoon">Coming Soon</a></li>      
           <li><a asp-area="" asp-controller="Home" asp-action="About">About the cinema</a></li>
         </ul>
       </nav>
       <div class="main-panel first-panel">
+                <div class="home swiper">
+                    <!-- Additional required wrapper -->
+                    <div class="swiper-wrapper">
+                        <!-- Slides -->
+                        @for (int i = 0; i < Model.Count; i++)
+                        {
+                            <div class="swiper-slide container">
+                                <img src="images/@(Model[i].ImagePath).jpg" alt="">
+                                <div class="home-text">
+                                    <h1>@Model[i].Title</h1>
+                                    <a href="@Url.Action("Movie", "Home", new { movieID=Model[i].MovieID})" class="poster-link" data-movieid="@Model[i].MovieID">Check details</a>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                    <!-- If we need pagination -->
+                    <div class="swiper-pagination"></div>
 
+
+                    <!-- If we need scrollbar -->
+                    
+                </div>
           <div class="popupContainer">
                 <div class="popupContent">
                     <span class="close">&times;</span>
@@ -70,7 +90,9 @@
                     </form>
                 </div>
              </div>
+             
         <div class="heading heading--air-date">
+            
                     <ul class="tabs-controls">
                         <li class="tabs-controls__item">
                             <a href="#" class="tabs-controls__link input" data-screeningtime="@DateTime.Today.AddDays(0)" data-id="0">
@@ -103,7 +125,7 @@
                                 <div class="rating">
                                     <span>@Model[i].Rating</span>
                                 </div>
-                                <a href="@Url.Action("Movie", "Home", new { movieID=Model[i].MovieID})" class="poster-link" data-movieid="@Model[i].MovieID" title="Кликнете тук за страницата на филма Tango and Cash">
+                                <a href="@Url.Action("Movie", "Home", new { movieID=Model[i].MovieID})" class="poster-link" data-movieid="@Model[i].MovieID" title="">
                                     <img class="movie-poster"
                                          src="images/@(Model[i].ImagePath).jpg"
                                          alt="@Model[i].Title" />

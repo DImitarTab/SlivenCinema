@@ -23,10 +23,12 @@ namespace SlivenCinema.Controllers
 		{
 			var Today = DateTime.Today;
             var movieList = _context.Movies.Include(x => x.Screening).Where(x => x.Screening.Any(y => y.Time.Date == Today)).ToList();
+            var allMovies = _context.Movies.Include(x => x.Screening).ToList();
 
-			var newMovieList = AddMovieViewModel(movieList, Today);
 
-            return View(newMovieList);
+            var newMovieList = AddMovieViewModel(movieList, Today);
+
+            return View(allMovies);
 		}
 
 		
