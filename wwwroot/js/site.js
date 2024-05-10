@@ -137,6 +137,22 @@ $(document).ready(function () {
 });
 
 $(document).ready(function () {
+
+
+    $(".tabs-controls__link").on("click", function () {
+        let dataTime = $(this).data("screeningtime");
+
+        
+        $('.screening-time__movietime').each(function (e) {
+            let dataScreenTime = $(this).data("screeningtime");
+            console.log(dataScreenTime);
+            if (dataTime == dataScreenTime) {
+                $(this).show();
+            }
+            else $(this).hide();
+        });
+
+    });
     //$('.screening-time').click(function (event) {
     //    event.preventDefault();
         

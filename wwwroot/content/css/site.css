@@ -411,6 +411,7 @@ nav {
   min-width: 300px;
   height: 450px;
   box-shadow: 0 0 30px -2px #000;
+  object-fit: cover;
 }
 
 .summary-text,
@@ -584,11 +585,13 @@ nav {
     }
 }*/
 .screening-block {
-  margin: 60px 100px 0 320px;
   display: flex;
   justify-content: space-evenly;
-  min-width: 580px;
-  width: 50%;
+  flex-direction: column;
+}
+
+.screening-time__movietime {
+  display: none;
 }
 
 .projection {
@@ -869,25 +872,25 @@ input:focus::-webkit-input-placeholder {
   transition: color 0.5s;
 }
 .card.hidden:nth-of-type(1) {
-  transform: rotate(-25deg) translateX(101%) translateY(-60%) scale(0.8) skewX(9deg) skewY(9deg);
+  transform: rotate(-15deg) translateX(101%) translateY(-7%) scale(0.3) skewX(1deg) skewY(12deg);
 }
 .card.hidden:nth-of-type(2) {
-  transform: rotate(-26deg) translateX(101%) translateY(-44%) scale(0.1) skewX(5deg) skewY(5deg);
+  transform: rotate(-15deg) translateX(101%) translateY(-58%) scale(0.9) skewX(10deg) skewY(7deg);
 }
 .card.hidden:nth-of-type(3) {
-  transform: rotate(-51deg) translateX(101%) translateY(-27%) scale(0.6) skewX(3deg) skewY(10deg);
+  transform: rotate(-26deg) translateX(101%) translateY(-36%) scale(1) skewX(4deg) skewY(10deg);
 }
 .card.hidden:nth-of-type(4) {
-  transform: rotate(-60deg) translateX(101%) translateY(-5%) scale(0.6) skewX(5deg) skewY(10deg);
+  transform: rotate(-55deg) translateX(101%) translateY(-29%) scale(0.3) skewX(4deg) skewY(2deg);
 }
 .card.hidden:nth-of-type(5) {
-  transform: rotate(-70deg) translateX(101%) translateY(-22%) scale(0.6) skewX(6deg) skewY(12deg);
+  transform: rotate(-38deg) translateX(101%) translateY(-45%) scale(0.3) skewX(7deg) skewY(2deg);
 }
 .card.hidden:nth-of-type(6) {
-  transform: rotate(-76deg) translateX(101%) translateY(-55%) scale(0.7) skewX(1deg) skewY(4deg);
+  transform: rotate(-20deg) translateX(101%) translateY(-43%) scale(0.2) skewX(2deg) skewY(7deg);
 }
 .card.hidden:nth-of-type(7) {
-  transform: rotate(-75deg) translateX(101%) translateY(-55%) scale(0.9) skewX(6deg) skewY(3deg);
+  transform: rotate(-19deg) translateX(101%) translateY(-35%) scale(0.1) skewX(12deg) skewY(9deg);
 }
 .card:nth-of-type(1) {
   z-index: 6;

@@ -25,10 +25,10 @@
       <section class="main-body">
         <nav>
           <ul>
-            <li><a asp-area="" asp-controller="Home" asp-action="Index">This week</a></li>
-          <li><a asp-area="" asp-controller="Home" asp-action="ComingSoon">Coming Soon</a></li>
-          <li><a asp-area="" asp-controller="Screening" asp-action="BookTicket">Book a ticket</a></li>
-          <li><a asp-area="" asp-controller="Home" asp-action="About">About the cinema</a></li>
+                    <li><a asp-area="" asp-controller="Home" asp-action="Index">This week</a></li>
+                    <li><a asp-area="" asp-controller="Home" asp-action="ComingSoon">Coming Soon</a></li>
+
+                    <li><a asp-area="" asp-controller="Home" asp-action="About">About the cinema</a></li>
           </ul>
         </nav>
         <div class="main-panel movie--panel">
@@ -54,7 +54,7 @@
              </div>
           <div class="title-block">
             <img
-              src="../images/@(Model.Title).jpg"
+              src="../images/@(Model.ImagePath).jpg"
               class="individual-movie"
               alt="@Model.Title"
             />
@@ -82,22 +82,71 @@
             </div>
           </div>
           <div class="screening-block">
-            <div class="heading heading--times"><h2>Screening Times:</h2></div>
-            <div class="screening-times">
-              <span> Tuesday, 24 September </span>
-              <div class="projection projection--one">
-                 @for(int i=0; i<@Model.Screening.Count(); i++)
-                     {
-                       <div class="time-container">
-                                    <a href="@Url.Action("BookTicket", "Screening", new { movieTime=Model.Screening[i].Time, movieName=Model.Title})" class="screening-time" data-time="@Model.Screening[i].Time" data-moviename="@Model.Title">@Model.Screening[i].Time.TimeOfDay.ToString("hh\\:mm")</a>
-                       </div>
-                     }
-                <div class="time-container">
+ 
+                        <div class="tabs-controls">
+                            <div class="tabs-controls__item">
+                            <a href="#" class="tabs-controls__link input" data-screeningtime="@DateTime.Today.AddDays(0)" data-mainid="0">
+                                    today
+                                </a>
+                            <button class="openPopup">+</button>
+                            </div>
+                            @for (int i = 1; i < 7; i++)
+                            {
+                                <div class="tabs-controls__item">
+                                    <a href="#" class="tabs-controls__link input" data-screeningtime="@DateTime.Today.AddDays(i)" data-id="@i">
+                                        @DateTime.Today.AddDays(i).DayOfWeek
+                                    </a>
+                                </div>
+                            }
+                            
+                            
+                        </div>
+                        <div class="screening-time__movielink">
+                                <div class="screening-time__movietime" data-screeningtime="@DateTime.Today"  data-id="0">
+                                    @for (int j = 0; j < Model.Screening.Count; j++)
+                                    {
+                                        if (Model.Screening[j].Time.Date == DateTime.Today)
+                                        {
+                                            <div class="time-container">
+                                                <a href="@Url.Action("BookTicket", "Screening", new { movieTime=Model.Screening[j].Time, movieName=Model.Title})" class="screening-time"  data-time="@Model.Screening[j].Time" data-moviename="@Model.Title">@Model.Screening[j].Time.TimeOfDay.ToString("hh\\:mm")</a>
+                                            </div>
+                                        }
+                                    }
+                                </div>
+
+                        @for (int i = 1; i < 7; i++)
+                        {
+
+                            <div class="screening-time__movietime" data-screeningtime="@DateTime.Today.AddDays(i)">
+                                    @for (int j = 0; j < Model.Screening.Count; j++)
+                                    {
+                                        if (Model.Screening[j].Time.Date == DateTime.Today.AddDays(i))
+                                        {
+                                            <div class="time-container">
+                                                <a href="@Url.Action("BookTicket", "Screening", new { movieTime=Model.Screening[j].Time, movieName=Model.Title})" class="screening-time" data-time="@Model.Screening[j].Time" data-moviename="@Model.Title">@Model.Screening[j].Time.TimeOfDay.ToString("hh\\:mm")</a>
+                                            </div>
+                                        }
+                                    }
+                                </div>
+                        }
+                        </div>
+            @* <div class="screening-times">
+                        <div class="full-panel cards-container">
+                                    <div class="projection projection--one">
+                                        @for (var j = 0; j < Model.Screening.Count(); j++)
+                                        {
+                                            <div class="time-container">
+                                                <a href="@Url.Action("BookTicket", "Screening", new { movieTime=Model.Screening[j].Time, movieName=Model.Title})" class="screening-time" data-time="@Model.Screening[j].Time" data-moviename="@Model.Title">@Model.Screening[j].Time.TimeOfDay.ToString("hh\\:mm")</a>
+                                            </div>
+                                        }
+                                    </div>
+                        </div>
+                        @* <div class="time-container">
                   <button class="openPopup">+</button>
                 </div>
-              </div>
- 
-            </div>
+
+
+                    </div>*@
           </div>
         </div>
       </section>

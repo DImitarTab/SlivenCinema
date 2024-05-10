@@ -39,7 +39,7 @@
               @for (var i = 0; i < @Model.Count(); i++)
               {
                   <div class="poster-container">
-                      <a class="poster" href="more-html/96.html" title="Кликнете тук за страницата на филма 96" >
+                    <a class="poster" href="@Url.Action("Movie", "Home", new { movieID=Model[i].MovieID})" data-movieid="@Model[i].MovieID" title="Кликнете тук за страницата на филма 96">
                           <img class="movie-poster" src="~/images/@(Model[i].ImagePath).jpg" alt="@(Model[i].Title)" />
                           <p class="poster-name">@Model[i].Title</p>
                           <p class="poster-genre">@Model[i].Genre</p>
