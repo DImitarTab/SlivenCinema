@@ -369,7 +369,14 @@ nav {
 
 .screening-time__movietime {
     display: none;
+
+    &.screening-time__activated {
+        display: flex;
+        animation: fadeIn 0.5s linear;
+    }
 }
+
+
 
 .projection {
     display: flex;

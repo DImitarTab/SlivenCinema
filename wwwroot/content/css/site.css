@@ -593,6 +593,10 @@ nav {
 .screening-time__movietime {
   display: none;
 }
+.screening-time__movietime.screening-time__activated {
+  display: flex;
+  animation: fadeIn 0.5s linear;
+}
 
 .projection {
   display: flex;
@@ -872,25 +876,25 @@ input:focus::-webkit-input-placeholder {
   transition: color 0.5s;
 }
 .card.hidden:nth-of-type(1) {
-  transform: rotate(-15deg) translateX(101%) translateY(-7%) scale(0.3) skewX(1deg) skewY(12deg);
+  transform: rotate(-63deg) translateX(101%) translateY(-14%) scale(0.4) skewX(12deg) skewY(5deg);
 }
 .card.hidden:nth-of-type(2) {
-  transform: rotate(-15deg) translateX(101%) translateY(-58%) scale(0.9) skewX(10deg) skewY(7deg);
+  transform: rotate(-75deg) translateX(101%) translateY(-36%) scale(1) skewX(12deg) skewY(9deg);
 }
 .card.hidden:nth-of-type(3) {
-  transform: rotate(-26deg) translateX(101%) translateY(-36%) scale(1) skewX(4deg) skewY(10deg);
+  transform: rotate(-15deg) translateX(101%) translateY(-54%) scale(1) skewX(1deg) skewY(6deg);
 }
 .card.hidden:nth-of-type(4) {
-  transform: rotate(-55deg) translateX(101%) translateY(-29%) scale(0.3) skewX(4deg) skewY(2deg);
+  transform: rotate(-3deg) translateX(101%) translateY(-43%) scale(1) skewX(2deg) skewY(2deg);
 }
 .card.hidden:nth-of-type(5) {
-  transform: rotate(-38deg) translateX(101%) translateY(-45%) scale(0.3) skewX(7deg) skewY(2deg);
+  transform: rotate(-7deg) translateX(101%) translateY(-24%) scale(0.1) skewX(1deg) skewY(3deg);
 }
 .card.hidden:nth-of-type(6) {
-  transform: rotate(-20deg) translateX(101%) translateY(-43%) scale(0.2) skewX(2deg) skewY(7deg);
+  transform: rotate(-62deg) translateX(101%) translateY(-48%) scale(0.4) skewX(1deg) skewY(11deg);
 }
 .card.hidden:nth-of-type(7) {
-  transform: rotate(-19deg) translateX(101%) translateY(-35%) scale(0.1) skewX(12deg) skewY(9deg);
+  transform: rotate(-72deg) translateX(101%) translateY(-50%) scale(0.7) skewX(10deg) skewY(5deg);
 }
 .card:nth-of-type(1) {
   z-index: 6;

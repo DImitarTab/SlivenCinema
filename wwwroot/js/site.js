@@ -147,9 +147,9 @@ $(document).ready(function () {
             let dataScreenTime = $(this).data("screeningtime");
             console.log(dataScreenTime);
             if (dataTime == dataScreenTime) {
-                $(this).show();
+                $(this).addClass("screening-time__activated");
             }
-            else $(this).hide();
+            else $(this).removeClass("screening-time__activated");
         });
 
     });
