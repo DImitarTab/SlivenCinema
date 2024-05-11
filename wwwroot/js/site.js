@@ -1,25 +1,20 @@
 
-const urlParams = new URLSearchParams(window.location.search);
-
 function setImage() {
     $(".movie-poster").attr("src", "");
 }
 
-const swiper = new Swiper('.home', {
-    // Optional parameters
-    direction: 'vertical',
-    loop: true,
-
-    // If we need pagination
-    pagination: {
-        el: '.swiper-pagination',
-    },
-
-    // Navigation arrows
-
-});
-
-
+var swiper = new Swiper(".home", {
+            spaceBetween: 30,
+            centeredSlides: true,
+            autoplay: {
+                delay: 4000,
+                disableOnInteraction: true,
+            },
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+        });
 $(document).ready(function () {
     $(".input").on("click", function () {
 
@@ -36,25 +31,25 @@ $(document).ready(function () {
     });
     
 });
-$(".input").on("click", function (evt) {
-    var i, tabcontent, tablinks;
-    var cityName = $(this).data("screeningtime");
-    // Get all elements with class="tabcontent" and hide them
-    tabcontent = document.getElementsByClassName("tabcontent");
-    for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-    }
+//$(".input").on("click", function (evt) {
+//    var i, tabcontent, tablinks;
+//    var cityName = $(this).data("screeningtime");
+//    // Get all elements with class="tabcontent" and hide them
+//    tabcontent = document.getElementsByClassName("tabcontent");
+//    for (i = 0; i < tabcontent.length; i++) {
+//        tabcontent[i].style.display = "none";
+//    }
 
-    // Get all elements with class="tablinks" and remove the class "active"
-    tablinks = document.getElementsByClassName("input");
-    for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
-    }
+//    // Get all elements with class="tablinks" and remove the class "active"
+//    tablinks = document.getElementsByClassName("input");
+//    for (i = 0; i < tablinks.length; i++) {
+//        tablinks[i].className = tablinks[i].className.replace(" active", "");
+//    }
 
-    // Show the current tab, and add an "active" class to the button that opened the tab
-    document.getElementById(cityName).style.display = "block";
-    evt.currentTarget.className += " active";
-});
+//    // Show the current tab, and add an "active" class to the button that opened the tab
+//    document.getElementById(cityName).style.display = "block";
+//    evt.currentTarget.className += " active";
+//});
 
 $(document).ready(function () {
     

@@ -18,7 +18,7 @@
    
   </head>
   <body>
-    <div class="container">
+    <div class="wrapper">
       <header class="header">
         <div class="header-name"><h1>Sliven Cinema</h1></div>
       </header>
@@ -37,8 +37,8 @@
                     <span class="close">&times;</span>
                     <h1>Add Movie Screening</h1>
                     <form id="movieScreeningForm">
-                        <label for="movieName">Movie Name:</label>
-                        <input type="text" id="movieName" name="movieName" required><br><br>
+                        
+                        <input type="hidden" id="movieName" name="movieName" value="@Model.Title"><br><br>
 
                         <label for="screeningDate">Screening Date:</label>
                         <input type="date" min="@Model.ReleaseDate.Date.ToString("yyyy-MM-dd")" id="screeningDate" name="screeningDate" required><br><br>

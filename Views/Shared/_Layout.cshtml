@@ -5,16 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - SlivenCinema</title>
    @* <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />*@
-    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <link href="~/content/css/site.css" rel="stylesheet" asp-append-version="true"/>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    
 
     
-    <link rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-    <script src="~/js/site.js" asp-append-version="true"></script>
+    @* <link rel="stylesheet" href="~/node_modules/swiper/swiper-bundle.min.css">
+    <script type="module" src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script> *@
+
+    
+    <script type="module" src="~/js/site.js" asp-append-version="true"></script>
    
 </head>
 <body>
@@ -61,8 +63,8 @@
             &copy; 2024 - SlivenCinema - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>*@
-    
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
-    <script type="module" src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    
 </body>
 </html>
