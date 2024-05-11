@@ -14,8 +14,29 @@ var swiper = new Swiper(".home", {
                 el: ".swiper-pagination",
                 clickable: true,
             },
-        });
+});
+
+var swiper2 = new Swiper(".movie", {
+    spaceBetween: 30,
+    centeredSlides: true,
+    autoplay: {
+        delay: 4000,
+        disableOnInteraction: true,
+    },
+    pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+    },
+});
+
+
 $(document).ready(function () {
+
+
+    $.get("Home/_Movies", function (data) {
+        $("#loadPartialView").append(data);
+    });
+
     $(".input").on("click", function () {
 
         var today = $(this).data('screeningtime');

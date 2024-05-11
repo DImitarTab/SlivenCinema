@@ -21,18 +21,22 @@
 
 <body>
     <div class="container">
-        <header class="header">
-          <div class="header-name"><h1>Sliven Cinema</h1></div>
-        </header>
+
+            <header class="header">
+                <div class="header-name">
+                    <h1>Sliven Cinema</h1>
+                </div>
+
+                <ul class="nav-list">
+                    <li><a asp-area="" asp-controller="Home" asp-action="Index">This week</a></li>
+                    <li><a asp-area="" asp-controller="Home" asp-action="ComingSoon">Coming Soon</a></li>
+                    <li><a asp-area="" asp-controller="Home" asp-action="About">About the cinema</a></li>
+                </ul>
+
+            </header>
+
         <section class="main-body">
-            <nav>
-              <ul>
-                          <li><a asp-area="" asp-controller="Home" asp-action="Index">This week</a></li>
-          <li><a asp-area="" asp-controller="Home" asp-action="ComingSoon">Coming Soon</a></li>
-          
-          <li><a asp-area="" asp-controller="Home" asp-action="About">About the cinema</a></li>
-              </ul>
-            </nav>
+            
             <div class="main-panel third-panel">
                 <div class="selection-form">
                     <div class="heading heading--title">

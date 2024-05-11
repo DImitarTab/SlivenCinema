@@ -35,6 +35,12 @@ namespace SlivenCinema.Controllers
 
         public PartialViewResult _Movies(DateTime Today)
 		{
+			var defaultDate = new DateTime();
+			if (Today==defaultDate)
+			{
+				Today = DateTime.Today;
+			}
+
 			var movieList = _context.Movies.Include(x => x.Screening).Where(x => x.Screening.Any(y => y.Time.Date == Today)).ToList();
 
             var newMovieList = AddMovieViewModel(movieList, Today);

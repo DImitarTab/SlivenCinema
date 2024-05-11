@@ -25,14 +25,16 @@
   <body>
     <div class="wrapper">
     <header class="header">
-      <div class="header-name"><h1>Sliven Cinema</h1></div>
-            <nav>
-                <ul class="nav-list">
-                    <li><a asp-area="" asp-controller="Home" asp-action="Index">This week</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="ComingSoon">Coming Soon</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="About">About the cinema</a></li>
-                </ul>
-            </nav>
+            <div class="header-name">
+                <h1>Sliven Cinema</h1>
+            </div>
+            
+            <ul class="nav-list">
+                <li><a asp-area="" asp-controller="Home" asp-action="Index">This week</a></li>
+                <li><a asp-area="" asp-controller="Home" asp-action="ComingSoon">Coming Soon</a></li>
+                <li><a asp-area="" asp-controller="Home" asp-action="About">About the cinema</a></li>
+            </ul>
+            
     </header>
     <section class="main-body">
       
@@ -98,7 +100,7 @@
             
                     <ul class="tabs-controls">
                         <li class="tabs-controls__item">
-                            <a href="#" class="tabs-controls__link input" data-screeningtime="@DateTime.Today.AddDays(0)" data-id="0">
+                            <a href="#" class="tabs-controls__link input tabs-controls__link--act" data-screeningtime="@DateTime.Today.AddDays(0)" data-id="0">
                                 today
                             </a>
                         </li>
@@ -118,10 +120,10 @@
                     <button class="openPopup">+</button>  
                  
         </div>
-                <div class="full-panel cards-container">
+                <div class="full-panel cards-container" id="loadPartialView">
                     
                     
-                        @for (var i = 0; i < Model.Count(); i++)
+                        @* @for (var i = 0; i < Model.Count(); i++)
                         {
                         
                         <div class="poster-container">
@@ -144,7 +146,7 @@
                                     }
                                 </div>
                             </div>
-                        }
+                        } *@
                     
                     
                 </div>         
