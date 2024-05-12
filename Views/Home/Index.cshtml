@@ -25,14 +25,18 @@
   <body>
     <div class="wrapper">
     <header class="header">
-            <div class="header-name">
-                <h1>Sliven Cinema</h1>
+            
+            <a asp-controller="Home" asp-action="Index" class="logo">
+                <i class='bx bxs-movie-play'></i>Sliven Cinema
+            </a>
+            <div class="bx bx-menu" id="menu-icon">
+
             </div>
             
             <ul class="nav-list">
-                <li><a asp-area="" asp-controller="Home" asp-action="Index">This week</a></li>
-                <li><a asp-area="" asp-controller="Home" asp-action="ComingSoon">Coming Soon</a></li>
-                <li><a asp-area="" asp-controller="Home" asp-action="About">About the cinema</a></li>
+                <li><a class="nav-list" asp-area="" asp-controller="Home" asp-action="Index">This week</a></li>
+                <li><a class="nav-list" asp-area="" asp-controller="Home" asp-action="ComingSoon">Coming Soon</a></li>
+                <li><a class="nav-list" asp-area="" asp-controller="Home" asp-action="About">About the cinema</a></li>
             </ul>
             
     </header>
@@ -46,7 +50,7 @@
                         @for (int i = 0; i < 4; i++)
                         {
                             <div class="swiper-slide container">
-                                <img src="images/@(Model[i].ImagePath)_carousel.jpg" alt="">
+                                <img src="images/@(Model[i].ImagePath)_carousel_1.jpg" alt="">
                                 <div class="home-text">
                                     <h1>@Model[i].Title</h1>
                                     <a href="@Url.Action("Movie", "Home", new { movieID=Model[i].MovieID})" class="poster-link btn" data-movieid="@Model[i].MovieID">Check details</a>
@@ -100,7 +104,7 @@
             
                     <ul class="tabs-controls">
                         <li class="tabs-controls__item">
-                            <a href="#" class="tabs-controls__link input tabs-controls__link--act" data-screeningtime="@DateTime.Today.AddDays(0)" data-id="0">
+                            <a href="#" class="tabs-controls__link input tabs-controls__link--active" data-screeningtime="@DateTime.Today.AddDays(0)" data-id="0">
                                 today
                             </a>
                         </li>
@@ -121,34 +125,6 @@
                  
         </div>
                 <div class="full-panel cards-container" id="loadPartialView">
-                    
-                    
-                        @* @for (var i = 0; i < Model.Count(); i++)
-                        {
-                        
-                        <div class="poster-container">
-                                <div class="rating">
-                                    <span>@Model[i].Rating</span>
-                                </div>
-                                <a href="@Url.Action("Movie", "Home", new { movieID=Model[i].MovieID})" class="poster-link" data-movieid="@Model[i].MovieID" title="">
-                                    <img class="movie-poster"
-                                         src="images/@(Model[i].ImagePath).jpg"
-                                         alt="@Model[i].Title" />
-                                    <p class="poster-name">@Model[i].Title</p>
-                                    <p class="poster-genre">@Model[i].Genre</p>
-                                </a>
-                                <div class="projection projection--one">
-                                    @for (var j = 0; j < Model[i].Screening.Count(); j++)
-                                    {
-                                        <div class="time-container">
-                                        <a href="@Url.Action("BookTicket", "Screening", new { movieTime=Model[i].Screening[j].Time, movieName=Model[i].Title})" class="screening-time" data-time="@Model[i].Screening[j].Time" data-moviename="@Model[i].Title">@Model[i].Screening[j].Time.TimeOfDay.ToString("hh\\:mm")</a>
-                                        </div>
-                                    }
-                                </div>
-                            </div>
-                        } *@
-                    
-                    
                 </div>         
         <!-- This is the movies panel -->
       </div>

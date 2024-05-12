@@ -6,6 +6,8 @@
     <title>@ViewData["Title"] - SlivenCinema</title>
    @* <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />*@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
     <link href="~/content/css/site.css" rel="stylesheet" asp-append-version="true"/>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
@@ -55,6 +57,18 @@
     
         
             @RenderBody()
+            <section class="footer">
+                <a asp-controller="Home" asp-action="Index" class="logo">
+                    <i class='bx bxs-movie-play'></i>Sliven Cinema
+                </a>
+                <div class="social-links">
+                    <a href="https://github.com/DImitarTab"><i class='bx bxl-github'></i></a>
+                    <a href="https://www.linkedin.com/in/dimitar-tabakov137/"><i class='bx bxl-linkedin'></i></a>
+                </div>
+            </section>
+            <div class="copyright">
+                <p>&#169; Dimitar Tabakov All Rights Reserved.</p>
+            </div>
      @* </section>*@
 
 
@@ -64,6 +78,7 @@
         </div>
     </footer>*@
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    
     @await RenderSectionAsync("Scripts", required: false)
     
 </body>

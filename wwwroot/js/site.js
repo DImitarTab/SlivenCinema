@@ -1,7 +1,8 @@
+let header = document.querySelector('header');
+window.addEventListener('scroll', () => {
+    header.classList.toggle('shadow', window.scrollY > 0);
+});
 
-function setImage() {
-    $(".movie-poster").attr("src", "");
-}
 
 var swiper = new Swiper(".home", {
             spaceBetween: 30,

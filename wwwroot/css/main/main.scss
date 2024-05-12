@@ -1,16 +1,24 @@
+
 html {
-    scrollbar-color: #737374 #19191a;
+    scrollbar-color: $darkred $black;
     scrollbar-width: thin;
+    font-family: "Open Sans", sans-serif;
 }
 
 body {
     box-sizing: border-box;
     min-height: 100vh;
+    background: $darker-background;
+
+    @include bp(1281px) {
+        background: white;
+    }
 }
 .wrapper {
     min-height: 100vh;
     display: flex;
     flex-direction:column;
+    
 }
 
 .main-body {
@@ -23,68 +31,88 @@ body {
 
 .header {
     position: fixed;
+    width: 100%;
     top: 0;
     right: 0;
     z-index: 1000;
     display: flex;
-    align-content: space-between;
+    justify-content: space-between;
     align-items: center;
-    width: 100%;
-    background-color:transparent;
-    flex-basis: 5%;
+    background-color: transparent;
+    padding: 20px 100px;
     transition: 0.4s;
-   
+
+    &.shadow {
+        background: $white;
+
+        a {
+            color: $darker-background;
+        }
+    }
 }
 
 
-.header-name {
+.logo {
+    font-size: 1.1rem;
+    font-weight: 700;
     display: flex;
-    font-weight: bold;
-    font-family: "Open Sans", sans-serif;
-    font-size: 20px;
     color: $font-color;
     align-items: center;
     justify-content: center;
-    flex-basis: 10%;
-    min-width:150px;
+    column-gap: 0.5rem;
+    min-width: fit-content;
+
+    .bx {
+        font-size: 24px;
+        color: $lightred;
+    }
 }
+
+
 
 
 .nav-list {
     display: flex;
     width: 100%;
-    font-weight: bold;
-    font-family: "Open Sans", sans-serif;
-    padding: 20px 100px;
+    font-weight: 600;
     justify-content: space-evenly;
     align-items: center;
     flex-wrap: wrap;
-    flex-basis: 90%;
     animation: fadeInAtPosition 0.5s linear;
     column-gap: 5rem;
+
 
     li {
         position: relative;
     }
 }
 
+
+
 .nav-list a::after {
     position: absolute;
     left: 0;
-    right: 0;
     bottom: -4px;
     display: block;
     width: 0;
-    height: 2px;
+    height: 3px;
     background-color: #ff424f;
     border-radius: 2px;
     margin: auto;
     content: '';
-    transition: width 0.4s;
+    transition: width 0.3s;
 }
 
-.nav-list a:hover::after {
+.nav-list a:hover::after,
+.nav-list .nav-active::after {
     width: 100%;
+}
+
+#menu-icon {
+    font-size:24px;
+    cursor:pointer;
+    z-index:1000001;
+    display:none;
 }
 
 /*End of Header*/
@@ -185,12 +213,12 @@ body {
   border: 2px solid $darker-background;
 }
 
-h2 {
-  font-family: "Open Sans", sans-serif;
-  color: $font-color;
-  font-size: 20px;
-  text-align: center;
-  font-weight: bold;
+.panel-title h2{
+    font-family: "Open Sans", sans-serif;
+    color: $font-color;
+    font-size: 20px;
+    text-align: center;
+    font-weight: bold;
 }
 
 .main-panel {
@@ -203,6 +231,9 @@ h2 {
 .first-panel {
 
    /* padding: 40px;*/
+}
+.panel-title {
+    padding: 50px;
 }
 
 .heading--air-date {
@@ -241,10 +272,6 @@ h2 {
 
 
 .poster-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 300px;
     color: $font-color;
     animation: fadeIn 0.5s linear;
 }
@@ -260,11 +287,13 @@ h2 {
     top: 15px;
     z-index: 1;
     border-radius: 20px;
-    background-color: #F2613F;
+    background-color: $orange;
     width: 50px;
     height: 30px;
     align-items: center;
     justify-content: center;
+    margin: 0 auto;
+
     span {
         font-weight: 600;
     }
@@ -293,11 +322,9 @@ h2 {
 }
 
 .movie-poster {
-    width: 100%;
-    min-width: 300px;
-    height: 450px;
     box-shadow: 0 0 30px -2px $black;
-    object-fit: cover;
+
+    border-radius: 15px;
 
     &:hover {
         filter: brightness(70%);
@@ -440,7 +467,7 @@ ul > li {
 
 
 .time-container {
-    background: #9B3922;
+    background: $darkred;
     border-radius: 7px;
     width: 50px;
     min-width: 50px;
@@ -686,11 +713,26 @@ input:focus::-webkit-input-placeholder {
 
 .full-panel {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px,1fr));
-    width: 100%;
-    padding: 0 150px 100px  150px;
-
+    grid-template-columns: repeat(auto-fill, minmax(250px,auto));
+    max-width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
+    gap: 1rem;
+    margin-top: 2rem;
 }
+
+.poster-container .box-img {
+    width: 100%;
+    height: 450px;
+}
+
+.poster-container .box-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
 
 @media (min-width: 600px) {
     .panel {
@@ -719,7 +761,7 @@ $itemsCount: 7; // Adjust if tabs number changes
     justify-content: center;
     align-items: stretch;
     width: 100%;
-    padding: 100px 50px 50px 50px;
+    padding: 50px;
     flex-wrap: wrap;
     margin: 0 auto;
     box-sizing: border-box;
@@ -738,7 +780,7 @@ $itemsCount: 7; // Adjust if tabs number changes
     text-decoration: none;
 
     &:hover {
-        color: #E6BAA3;
+        color: $orange;
     }
 
 
@@ -811,3 +853,66 @@ $itemsCount: 7; // Adjust if tabs number changes
     }
 }
 
+/*Footer*/
+
+.copyright {
+    background: $darker-background;
+    color: $font-color;
+    padding: 20px;
+    text-align:center;
+}
+
+.footer {
+    max-width:968px;
+    margin-left:auto;
+    margin-right:auto;
+    display:flex;
+    justify-content: space-between;
+    align-items:center;
+}
+
+.social-links {
+    display:flex;
+    align-items: center;
+    column-gap: 0.5rem;
+}
+
+
+
+.social-links .bx {
+    padding: 2px;
+    font-size: 2rem;
+    background: $placeholder;
+    border-radius: 50%;
+    border: 4px solid $darkred;
+    color: $darker-background;
+    &:hover {
+        background: $darkred;
+        color: $font-color;
+        transition: 0.2s all linear;
+    }
+}
+
+@media (max-width:1280px) {
+    .tabs-controls__link {
+        font-size: 15px;
+        &:after {
+            height:3px;
+        }
+    }
+}
+
+
+@media(max-width:1080px){
+    .home-text {
+        padding: 0 100px;
+    }
+
+    .tabs-controls__link {
+        font-size: 13px;
+
+        &:after {
+            height: 2px;
+        }
+    }
+}

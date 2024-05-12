@@ -20,16 +20,16 @@
   <body>
     <div class="wrapper">
         <header class="header">
-            <div class="header-name">
-                <h1>Sliven Cinema</h1>
-            </div>
+            <a asp-controller="Home" asp-action="Index" class="logo">
+                <i class='bx bxs-movie-play'></i>Sliven Cinema
+            </a>
+
 
             <ul class="nav-list">
-                <li><a asp-area="" asp-controller="Home" asp-action="Index">This week</a></li>
+                <li><a class="nav-active" asp-area="" asp-controller="Home" asp-action="Index">This week</a></li>
                 <li><a asp-area="" asp-controller="Home" asp-action="ComingSoon">Coming Soon</a></li>
                 <li><a asp-area="" asp-controller="Home" asp-action="About">About the cinema</a></li>
             </ul>
-
         </header>
       <section class="main-body">
         <div class="main-panel movie--panel">

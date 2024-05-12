@@ -21,24 +21,49 @@
   
     <div class="wrapper">
       <header class="header">
-        <div class="header-name">
-            <h1>Sliven Cinema</h1>
-        </div>
-        <nav>
-            <ul class="nav-list">
-                <li><a asp-area="" asp-controller="Home" asp-action="Index">This week</a></li>
-                <li><a asp-area="" asp-controller="Home" asp-action="ComingSoon">Coming Soon</a></li>
-                <li><a asp-area="" asp-controller="Home" asp-action="About">About the cinema</a></li>
-            </ul>
-        </nav>
+        <a asp-controller="Home" asp-action="Index" class="logo">
+            <i class='bx bxs-movie-play'></i>Sliven Cinema
+        </a>
+
+
+        <ul class="nav-list">
+            <li><a class="nav-list" asp-area="" asp-controller="Home" asp-action="Index">This week</a></li>
+            <li><a class="nav-list" asp-area="" asp-controller="Home" asp-action="ComingSoon">Coming Soon</a></li>
+            <li><a class="nav-list" asp-area="" asp-controller="Home" asp-action="About">About the cinema</a></li>
+        </ul>
       </header>
       <section class="main-body">
         
         <div class="main-panel first-panel">
-          <div class="heading heading--air-date">
+            <div class="home swiper">
+                <!-- Additional required wrapper -->
+                <div class="swiper-wrapper">
+                    <!-- Slides -->
+                    @for (int i = 0; i < Model.Count; i++)
+                    {
+                        <div class="swiper-slide container">
+                            <img src="/images/@(Model[i].ImagePath)_carousel_1.jpg" alt="">
+                            <div class="home-text">
+                                <h1>@Model[i].Title</h1>
+                                <a href="@Url.Action("Movie", "Home", new { movieID=Model[i].MovieID})" class="poster-link btn" data-movieid="@Model[i].MovieID">Check details</a>
+                            </div>
+                        </div>
+                    }
+                    <!-- End of Slides -->
+
+                </div>
+                <!-- If we need pagination -->
+                <div class="swiper-pagination"></div>
+
+
+                <!-- If we need scrollbar -->
+
+            </div>
+            <div class="panel-title">
             <h2>Coming Soon</h2>
-            <hr />
+ 
           </div>
+            <div class="full-panel cards-container" >
               @for (var i = 0; i < @Model.Count(); i++)
               {
                   <div class="poster-container">
@@ -49,7 +74,7 @@
                       </a>
                   </div>
               }
-
+              </div>
           <!-- This is the movies panel -->
         </div>
       </section>
