@@ -45,10 +45,11 @@ namespace SlivenCinema.Controllers
 
             var newMovieList = AddMovieViewModel(movieList, Today);
 
+
 			for (int i = 0; i < newMovieList.Count; i++)
 			{
-				newMovieList[i].Screening.OrderBy(x => x.Time.Date).ThenBy(x=>x.Time.TimeOfDay);
-			}
+				newMovieList[i].Screening = newMovieList[i].Screening.OrderBy(x => x.Time.Date).ThenBy(x => x.Time.TimeOfDay).ToList();
+            }
 
             return PartialView("_Movies", newMovieList);
 		}

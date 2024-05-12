@@ -5,7 +5,7 @@
     Layout = "_Layout";
 }
 
-<!DOCTYPE html>
+@* <!DOCTYPE html>
 
 <html lang="en">
   <head>
@@ -22,8 +22,8 @@
 
   </head>
 
-  <body>
-    <div class="wrapper">
+  <body> *@
+    @* <div class="wrapper">
     <header class="header">
             
             <a asp-controller="Home" asp-action="Index" class="logo">
@@ -34,12 +34,12 @@
             </div>
             
             <ul class="nav-list">
-                <li><a class="nav-list" asp-area="" asp-controller="Home" asp-action="Index">This week</a></li>
-                <li><a class="nav-list" asp-area="" asp-controller="Home" asp-action="ComingSoon">Coming Soon</a></li>
-                <li><a class="nav-list" asp-area="" asp-controller="Home" asp-action="About">About the cinema</a></li>
+                <li><a asp-area="" asp-controller="Home" asp-action="Index">This week</a></li>
+                <li><a asp-area="" asp-controller="Home" asp-action="ComingSoon">Coming Soon</a></li>
+                <li><a asp-area="" asp-controller="Home" asp-action="About">About the cinema</a></li>
             </ul>
             
-    </header>
+    </header> *@
     <section class="main-body">
       
       <div class="main-panel first-panel">
@@ -132,7 +132,8 @@
     </div>
    
 
-  </body>
+@*   </body>
 
 
 </html>
+ *@

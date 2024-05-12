@@ -24,12 +24,13 @@
         <a asp-controller="Home" asp-action="Index" class="logo">
             <i class='bx bxs-movie-play'></i>Sliven Cinema
         </a>
-
+        <div class="bx bx-menu" id="menu-icon">
+        </div>
 
         <ul class="nav-list">
-            <li><a class="nav-list" asp-area="" asp-controller="Home" asp-action="Index">This week</a></li>
-            <li><a class="nav-list" asp-area="" asp-controller="Home" asp-action="ComingSoon">Coming Soon</a></li>
-            <li><a class="nav-list" asp-area="" asp-controller="Home" asp-action="About">About the cinema</a></li>
+            <li><a asp-area="" asp-controller="Home" asp-action="Index">This week</a></li>
+            <li><a asp-area="" asp-controller="Home" asp-action="ComingSoon">Coming Soon</a></li>
+            <li><a asp-area="" asp-controller="Home" asp-action="About">About the cinema</a></li>
         </ul>
       </header>
       <section class="main-body">
@@ -67,8 +68,10 @@
               @for (var i = 0; i < @Model.Count(); i++)
               {
                   <div class="poster-container">
-                    <a class="poster" href="@Url.Action("Movie", "Home", new { movieID=Model[i].MovieID})" data-movieid="@Model[i].MovieID" title="Кликнете тук за страницата на филма 96">
-                          <img class="movie-poster" src="~/images/@(Model[i].ImagePath).jpg" alt="@(Model[i].Title)" />
+                        <a class="poster-link" href="@Url.Action("Movie", "Home", new { movieID=Model[i].MovieID})" data-movieid="@Model[i].MovieID" title="Кликнете тук за страницата на филма 96">
+                            <div class="box-img">
+                                <img class="movie-poster" src="~/images/@(Model[i].ImagePath).jpg" alt="@(Model[i].Title)" />
+                             </div>
                           <p class="poster-name">@Model[i].Title</p>
                           <p class="poster-genre">@Model[i].Genre</p>
                       </a>

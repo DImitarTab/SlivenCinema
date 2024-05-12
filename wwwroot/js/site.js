@@ -1,4 +1,20 @@
 let header = document.querySelector('header');
+let menu = document.querySelector('#menu-icon');
+let navbar = document.querySelector('.nav-list');
+
+
+
+$("#menu-icon").on("click", function() {
+    (this).classList.toggle('bx-x');
+    $('.nav-list').toggleClass('nav-active');
+    $('.header').toggleClass('active');
+});
+
+$(window).on("scroll", function () {
+    $('.nav-list').removeClass('nav-active');
+    $('.header').removeClass('active');
+})
+
 window.addEventListener('scroll', () => {
     header.classList.toggle('shadow', window.scrollY > 0);
 });

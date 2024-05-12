@@ -1,7 +1,7 @@
 ﻿@model SlivenCinema.Models.Movie
 
 
-
+@* 
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -30,7 +30,7 @@
                 <li><a asp-area="" asp-controller="Home" asp-action="ComingSoon">Coming Soon</a></li>
                 <li><a asp-area="" asp-controller="Home" asp-action="About">About the cinema</a></li>
             </ul>
-        </header>
+        </header> *@
       <section class="main-body">
         <div class="main-panel movie--panel">
                 <div class="movie swiper">
@@ -175,71 +175,7 @@
         </div>
       </section>
     </div>
-  </body>
+@*   </body>
 
-@*  <script>
-
-      $(document).ready(function() {
-          $(".openPopup").on('click', function(){
-              var reusableForm = $(this).closest('.popupContainer');
-              $(".popupContainer").show();
-          });
-          
-          $(".close").on('click', function(){
-              $(".popupContainer").hide();
-          });
-
-          $(window).on('click', function(e) {
-              if(e.target == $(".popupContainer")) {
-                  $(".popupContainer").hide();
-              }         
-          });
-      });
-
-//      document.getElementsByClassName("openPopup").addEventListener("click", function() {
-//    document.getElementByClassName("popupContainer").style.display = "block";
-//});
-
-//// Close the popup when the close button or outside the popup is clicked
-//document.querySelector(".close").addEventListener("click", function() {
-//    document.getElementsByClassName("popupContainer").style.display = "none";
-//});
-
-//window.addEventListener("click", function(event) {
-//    if (event.target == document.getElementsByClassName("popupContainer")) {
-//        document.getElementsByClassName("popupContainer").style.display = "none";
-//    }
-//});
-
-document.getElementById("movieScreeningForm").addEventListener("submit", function(event) {
-    event.preventDefault(); // Prevent the form from submitting traditionally
-
-    // Get form data
-    var formData = new FormData(this);
-
-    // Create an object from form data
-    var movieScreening = {};
-    formData.forEach(function(value, key){
-        movieScreening[key] = value;
-    });
-
-    // Send the movie screening data to the server (you can use AJAX to send the data)
-    console.log("Movie Name: " + movieScreening.movieName);
-    console.log("Screening Date: " + movieScreening.screeningDate);
-    console.log("Screening Time: " + movieScreening.screeningTime);
-
-    $.post('@Url.Action("AddScreening")', {
-        movieName: movieScreening.movieName,
-        movieDate: movieScreening.screeningDate,
-        movieTime: movieScreening.screeningTime
-    }).done(function (d) 
-    {
-        document.getElementsByClassName("popupContainer").style.display = "none";
-                    console.log("Success")
-                })
-                .fail(function(xhr,status,error){
-                    console.error("error" + error)
-                });
-});
-  </script>*@
 </html>
+ *@
