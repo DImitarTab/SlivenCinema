@@ -439,8 +439,10 @@ body {
 }
 
 .third-panel {
+  min-height: 100vh;
+  display: flex;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: center;
 }
 
 .movie-row {
@@ -616,13 +618,28 @@ li:nth-child(8) {
   height: 20px;
 }
 
+/*Book a ticket section*/
 .hall {
   display: grid;
-  grid-template-columns: repeat(10, 50px); /* Adjust the number of columns and size as needed */
+  grid-template-columns: repeat(10, 50px);
   gap: 10px;
   color: #222b31;
   font-weight: bold;
-  margin-top: 50px;
+  padding: 50px;
+}
+
+.hall-legend {
+  display: flex;
+  gap: 30px;
+  grid-column: -1/1;
+  margin-bottom: 30px;
+}
+.hall-legend span {
+  color: #E4DEBE;
+}
+.hall-legend .hall-legend--containers {
+  display: flex;
+  gap: 10px;
 }
 
 .seats {
@@ -636,13 +653,31 @@ li:nth-child(8) {
   align-items: center;
 }
 .seats.selected {
-  background-color: red;
+  background-color: #ff424f;
 }
 .seats.occupied {
-  background-color: red;
+  background-color: #9B3922;
 }
 .seats:hover {
-  background-color: yellowgreen;
+  background-color: #F2613F;
+}
+
+.seats-legend {
+  width: 20px;
+  height: 20px;
+  background-color: #ffda79;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none;
+}
+.seats-legend.selected {
+  background-color: #ff424f;
+}
+.seats-legend.occupied {
+  background-color: #9B3922;
 }
 
 .screen {
@@ -651,9 +686,54 @@ li:nth-child(8) {
   color: #FFF;
   text-align: center;
   padding: 10px 0;
-  margin: 0 100px 50px 100px;
+  margin: 0 100px 30px;
+  border-radius: 5px;
 }
 
+.selection-form {
+  display: flex;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  background-color: #222b31;
+  border-radius: 10px;
+}
+
+.fields {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  width: 100%;
+  padding: 50px;
+  background-color: #222b31;
+  background: #212529;
+  flex-wrap: wrap;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+.fields h1 {
+  color: #E4DEBE;
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 30px;
+}
+
+.movie-info {
+  appearance: none;
+  color: #E4DEBE;
+  text-align-last: center;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.sbt-button {
+  color: #fff;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+/*End of book ticket*/
+/* site.css | https://localhost:7052/content/css/site.css?v=Fkv3goPHpXMQjl_ltgJ9LOjhizzt8EeUonL8pjPfxts */
 .time-container {
   background: #9B3922;
   border-radius: 7px;
@@ -708,6 +788,22 @@ li:nth-child(8) {
   border: 1px solid gray;
 }
 
+/*popups*/
+.popup-content {
+  display: none;
+  position: relative;
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  padding: 10px;
+  z-index: 1;
+}
+
+/* Show the popup when it has the 'show' class */
+.popup-content.show {
+  display: block;
+}
+
+/*end of popups*/
 .error,
 .dropdown-select {
   display: none;
@@ -742,51 +838,10 @@ input:focus::-webkit-input-placeholder {
   color: transparent;
 }
 
-.selection-form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  width: 100%;
-  height: 100%;
-}
-
-.fields {
-  display: flex;
-  width: 100%;
-  align-items: center;
-  background-color: #212529;
-  justify-content: space-evenly;
-  flex-wrap: wrap;
-  padding: 50px 0;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.212);
-}
-
 .heading--title {
   background: #212529;
   width: 100%;
   padding-top: 50px;
-}
-
-.movie-select {
-  margin: 10px;
-  width: 250px;
-  height: 30px;
-  appearance: none;
-  border: none;
-  color: #c7c7c7;
-  border-bottom: 1px solid #c7c7c7;
-  background-color: transparent;
-  text-align-last: center;
-}
-.movie-select option {
-  color: #000;
-}
-.movie-select:invalid {
-  color: rgb(107, 107, 107);
-}
-.movie-select:focus {
-  outline: none;
 }
 
 .heading--about {
@@ -882,7 +937,7 @@ input:focus::-webkit-input-placeholder {
 }
 .full-panel {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, auto));
+  grid-template-columns: repeat(auto-fill, minmax(308px, auto));
   max-width: 1280px;
   margin-left: auto;
   margin-right: auto;
@@ -979,25 +1034,25 @@ input:focus::-webkit-input-placeholder {
   transition: color 0.5s;
 }
 .card.hidden:nth-of-type(1) {
-  transform: rotate(-65deg) translateX(101%) translateY(-23%) scale(0.6) skewX(7deg) skewY(6deg);
+  transform: rotate(-63deg) translateX(101%) translateY(-45%) scale(0.8) skewX(8deg) skewY(9deg);
 }
 .card.hidden:nth-of-type(2) {
-  transform: rotate(-52deg) translateX(101%) translateY(-15%) scale(1) skewX(8deg) skewY(8deg);
+  transform: rotate(-71deg) translateX(101%) translateY(-30%) scale(0.4) skewX(11deg) skewY(8deg);
 }
 .card.hidden:nth-of-type(3) {
-  transform: rotate(-83deg) translateX(101%) translateY(-37%) scale(0.4) skewX(12deg) skewY(12deg);
+  transform: rotate(-16deg) translateX(101%) translateY(-32%) scale(0.1) skewX(6deg) skewY(7deg);
 }
 .card.hidden:nth-of-type(4) {
-  transform: rotate(-15deg) translateX(101%) translateY(-26%) scale(0.8) skewX(11deg) skewY(3deg);
+  transform: rotate(-94deg) translateX(101%) translateY(-16%) scale(0.9) skewX(5deg) skewY(4deg);
 }
 .card.hidden:nth-of-type(5) {
-  transform: rotate(-6deg) translateX(101%) translateY(-4%) scale(0.6) skewX(1deg) skewY(6deg);
+  transform: rotate(-81deg) translateX(101%) translateY(-55%) scale(0.1) skewX(4deg) skewY(6deg);
 }
 .card.hidden:nth-of-type(6) {
-  transform: rotate(-28deg) translateX(101%) translateY(-57%) scale(0.9) skewX(11deg) skewY(2deg);
+  transform: rotate(-17deg) translateX(101%) translateY(-44%) scale(0.4) skewX(9deg) skewY(1deg);
 }
 .card.hidden:nth-of-type(7) {
-  transform: rotate(-17deg) translateX(101%) translateY(-8%) scale(0.2) skewX(5deg) skewY(8deg);
+  transform: rotate(-45deg) translateX(101%) translateY(-50%) scale(0.8) skewX(9deg) skewY(6deg);
 }
 .card:nth-of-type(1) {
   z-index: 6;

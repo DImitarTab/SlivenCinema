@@ -10,9 +10,6 @@ body {
     min-height: 100vh;
     background: $darker-background;
 
-    @include bp(1281px) {
-        background: white;
-    }
 }
 .wrapper {
     min-height: 100vh;
@@ -186,12 +183,12 @@ body {
 
 
 .about {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-evenly;
-  animation: fadeIn 0.5s linear;
-  animation-fill-mode: both;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    animation: fadeIn 0.5s linear;
+    animation-fill-mode: both;
 }
 
 .images {
@@ -253,9 +250,14 @@ body {
 }
 
 .third-panel {
-  align-items: center;
-  justify-content: space-evenly;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
+
+
+
 
 .movie-row {
   display: flex;
@@ -423,16 +425,35 @@ ul > li {
   height: 20px;
 }
 
+
+/*Book a ticket section*/
+
+
 .hall {
     display: grid;
-    grid-template-columns: repeat(10, 50px); /* Adjust the number of columns and size as needed */
+    grid-template-columns: repeat(10, 50px); 
     gap: 10px;
     color: $lighter-background;
-    // background: white;
     font-weight: bold;
-    margin-top: 50px;
+    padding: 50px;
+    
 }
 
+.hall-legend {
+    display: flex;
+    gap: 30px;
+    grid-column: -1/1;
+    margin-bottom: 30px;
+
+    span {
+        color: $font-color;
+    }
+
+    .hall-legend--containers {
+        display: flex;
+        gap: 10px;
+    }
+}
 .seats {
     width: 50px;
     height: 50px;
@@ -444,17 +465,39 @@ ul > li {
     align-items: center;
 
     &.selected {
-        background-color: red;
+        background-color: $lightred;
     }
 
     &.occupied {
-        background-color: red;
+        background-color: $darkred;
     }
 
     &:hover {
-        background-color: yellowgreen;
+        background-color: $orange;
     }
 }
+.seats-legend {
+    width: 20px;
+    height: 20px;
+    background-color: #ffda79;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
+
+
+    &.selected {
+        background-color: $lightred;
+    }
+
+    &.occupied {
+        background-color: $darkred;
+    }
+}
+
+
 
 .screen {
     grid-column: 1 / -1;
@@ -462,8 +505,61 @@ ul > li {
     color: #FFF;
     text-align: center;
     padding: 10px 0;
-    margin:0 100px 50px 100px;
+    margin: 0 100px 30px;
+    border-radius: 5px;
 }
+
+
+
+
+.selection-form {
+    display: flex;
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    background-color: #222b31;
+    border-radius: 10px;
+}
+
+.fields {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    width: 100%;
+    padding: 50px;
+    background-color: #222b31;
+    background: #212529;
+    flex-wrap: wrap;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+
+    h1 {
+        color: $font-color;
+        font-size: 1.3rem;
+        font-weight: 700;
+        margin-bottom: 30px;
+    }
+
+}
+
+.movie-info {
+    appearance: none;
+    color: $font-color;
+    text-align-last: center;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.sbt-button {
+    color: $white;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+
+/*End of book ticket*/
+
+/* site.css | https://localhost:7052/content/css/site.css?v=Fkv3goPHpXMQjl_ltgJ9LOjhizzt8EeUonL8pjPfxts */
 
 
 .time-container {
@@ -526,6 +622,23 @@ ul > li {
   border: 1px solid gray;
 }
 
+/*popups*/
+.popup-content {
+    display: none;
+    position: relative;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    padding: 10px;
+    z-index: 1;
+}
+
+/* Show the popup when it has the 'show' class */
+.popup-content.show {
+    display: block;
+}
+/*end of popups*/
+
+
 .error,
 .dropdown-select {
   display: none;
@@ -560,25 +673,8 @@ input:focus::-webkit-input-placeholder {
   color: transparent;
 }
 
-.selection-form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  width: 100%;
-  height: 100%;
-}
 
-.fields {
-  display: flex;
-  width: 100%;
-  align-items: center;
-  background-color: #212529;
-  justify-content: space-evenly;
-  flex-wrap: wrap;
-  padding: 50px 0;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.212);
-}
+
 
 
 .heading--title {
@@ -587,29 +683,6 @@ input:focus::-webkit-input-placeholder {
   padding-top: 50px;
 }
 
-.movie-select {
-  margin: 10px;
-  width: 250px;
-  height: 30px;
-  appearance: none;
-  border: none;
-  color: $placeholder;
-  border-bottom: 1px solid $placeholder;
-  background-color: transparent;
-  text-align-last: center;
-
-  option {
-    color: $black;
-  }
-
-  &:invalid {
-    color: rgb(107, 107, 107);
-  }
-
-  &:focus {
-    outline: none;
-  }
-}
 
 .heading--about {
   padding-top: 20px;
@@ -713,7 +786,7 @@ input:focus::-webkit-input-placeholder {
 
 .full-panel {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px,auto));
+    grid-template-columns: repeat(auto-fill, minmax(308px,auto));
     max-width: 1280px;
     margin-left: auto;
     margin-right: auto;

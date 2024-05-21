@@ -69,25 +69,7 @@ $(document).ready(function () {
     });
     
 });
-//$(".input").on("click", function (evt) {
-//    var i, tabcontent, tablinks;
-//    var cityName = $(this).data("screeningtime");
-//    // Get all elements with class="tabcontent" and hide them
-//    tabcontent = document.getElementsByClassName("tabcontent");
-//    for (i = 0; i < tabcontent.length; i++) {
-//        tabcontent[i].style.display = "none";
-//    }
 
-//    // Get all elements with class="tablinks" and remove the class "active"
-//    tablinks = document.getElementsByClassName("input");
-//    for (i = 0; i < tablinks.length; i++) {
-//        tablinks[i].className = tablinks[i].className.replace(" active", "");
-//    }
-
-//    // Show the current tab, and add an "active" class to the button that opened the tab
-//    document.getElementById(cityName).style.display = "block";
-//    evt.currentTarget.className += " active";
-//});
 
 $(document).ready(function () {
     
@@ -128,22 +110,40 @@ $(document).ready(function () {
         console.log(selectedSeats);
     });
 
+    var btn = document.getElementById("popupBtn");
+    var popup = document.getElementById("popupContent");
+
+    // Show the popup when the button is clicked
+
 
 
     $(".sbt-button").on("click", function () {
-        $.post('/Screening/BookTicket', {
-            selectSeats: selectedSeats,
-            movieName: movieName,
-            movieTime: movieTime
+        if (selectedSeats.length == 0) {
 
-        })
-            .done(function (d) {
-                location.reload();
-                console.log("Success")
-        })
-            .fail(function (xhr, status, error) {
-                console.error("error" + error)
+            popup.classList.toggle("show");
+            window.addEventListener("click", function (event) {
+                if (!event.target.matches('#popupBtn')) {
+                    popup.classList.remove("show");
+                }
             });
+        }
+        else {
+
+
+            $.post('/Screening/BookTicket', {
+                selectSeats: selectedSeats,
+                movieName: movieName,
+                movieTime: movieTime
+
+            })
+                .done(function (d) {
+                    location.reload();
+                    console.log("Success")
+                })
+                .fail(function (xhr, status, error) {
+                    console.error("error" + error)
+                });
+        }
     });  
 });
 
