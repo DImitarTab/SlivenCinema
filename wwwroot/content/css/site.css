@@ -281,10 +281,11 @@ body {
   display: flex;
   width: 100%;
   font-weight: 600;
-  justify-content: space-evenly;
+  justify-content: flex-end;
   align-items: center;
   flex-wrap: wrap;
   animation: fadeInAtPosition 0.5s linear;
+  gap: 30px;
 }
 .nav-list li {
   position: relative;
@@ -1034,25 +1035,25 @@ input:focus::-webkit-input-placeholder {
   transition: color 0.5s;
 }
 .card.hidden:nth-of-type(1) {
-  transform: rotate(-63deg) translateX(101%) translateY(-45%) scale(0.8) skewX(8deg) skewY(9deg);
+  transform: rotate(-19deg) translateX(101%) translateY(-37%) scale(0.7) skewX(12deg) skewY(12deg);
 }
 .card.hidden:nth-of-type(2) {
-  transform: rotate(-71deg) translateX(101%) translateY(-30%) scale(0.4) skewX(11deg) skewY(8deg);
+  transform: rotate(-98deg) translateX(101%) translateY(-21%) scale(0.9) skewX(10deg) skewY(3deg);
 }
 .card.hidden:nth-of-type(3) {
-  transform: rotate(-16deg) translateX(101%) translateY(-32%) scale(0.1) skewX(6deg) skewY(7deg);
+  transform: rotate(-44deg) translateX(101%) translateY(-18%) scale(1) skewX(9deg) skewY(4deg);
 }
 .card.hidden:nth-of-type(4) {
-  transform: rotate(-94deg) translateX(101%) translateY(-16%) scale(0.9) skewX(5deg) skewY(4deg);
+  transform: rotate(-19deg) translateX(101%) translateY(-45%) scale(0.8) skewX(2deg) skewY(9deg);
 }
 .card.hidden:nth-of-type(5) {
-  transform: rotate(-81deg) translateX(101%) translateY(-55%) scale(0.1) skewX(4deg) skewY(6deg);
+  transform: rotate(-53deg) translateX(101%) translateY(-42%) scale(0.6) skewX(1deg) skewY(10deg);
 }
 .card.hidden:nth-of-type(6) {
-  transform: rotate(-17deg) translateX(101%) translateY(-44%) scale(0.4) skewX(9deg) skewY(1deg);
+  transform: rotate(-29deg) translateX(101%) translateY(-25%) scale(0.6) skewX(12deg) skewY(1deg);
 }
 .card.hidden:nth-of-type(7) {
-  transform: rotate(-45deg) translateX(101%) translateY(-50%) scale(0.8) skewX(9deg) skewY(6deg);
+  transform: rotate(-81deg) translateX(101%) translateY(-48%) scale(0.7) skewX(8deg) skewY(7deg);
 }
 .card:nth-of-type(1) {
   z-index: 6;
@@ -1092,12 +1093,13 @@ input:focus::-webkit-input-placeholder {
 }
 
 .footer {
-  max-width: 968px;
+  max-width: 1280px;
   margin-left: auto;
   margin-right: auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-top: 40px;
 }
 
 .social-links {

@@ -1,41 +1,21 @@
 ﻿@model SlivenCinema.Models.Screening
-@{
-    //string movieName = ViewBag.MovieName;
-    //TimeSpan screenTime = ViewBag.ScreeningTime;
-}
-@{
-    Layout = "_Layout";
-}
 
 
-@* <!DOCTYPE html>
-<html lang="en">
+<style>
+    .img--booking-background {
+        position: absolute;
+        top: 0;
+        right: 0;
+        filter: blur(4px);
+        height: 100vh;
+        width: 100%;
+        object-fit: cover;
+    }
+   
+</style>
 
-<head>
-    <meta charset="UTF-8">
-    <title>Book a ticket</title>
-    <link href="https://fonts.googleapis.com/css?family=Bungee+Shade" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-
-</head>
-
-<body>
-    <div class="container">
-
-            <header class="header">
-                <div class="header-name">
-                    <h1>Sliven Cinema</h1>
-                </div>
-
-                <ul class="nav-list">
-                    <li><a asp-area="" asp-controller="Home" asp-action="Index">This week</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="ComingSoon">Coming Soon</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="About">About the cinema</a></li>
-                </ul>
-
-            </header> *@
-
-        <section class="main-body">
+<section class="main-body">
+    <img src="../images/avatar_carousel_1.jpg" class="img--booking-background" alt="">
 
     <div class="main-panel third-panel">
                 <div class="selection-form">
