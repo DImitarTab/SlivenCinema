@@ -76,9 +76,17 @@
                         </li>
                         @for (int i = 1; i < 7; i++)
                         {
-                            <li class="tabs-controls__item">
+                            <li class="tabs-controls__item long-date">
                                 <a href="#" class="tabs-controls__link input" data-screeningtime="@DateTime.Today.AddDays(i)" data-id="i">
                                     @DateTime.Today.AddDays(i).DayOfWeek
+                                </a>
+                            </li>
+                        }
+                        @for (int i = 1; i < 7; i++)
+                        {
+                            <li class="tabs-controls__item short-date">
+                                <a href="#" class="tabs-controls__link input" data-screeningtime="@DateTime.Today.AddDays(i)" data-id="i">
+                                    @DateTime.Today.AddDays(i).ToString("ddd")
                                 </a>
                             </li>
                         }
