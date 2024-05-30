@@ -362,6 +362,10 @@ hr {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 100px;
 }
 
 li a{
@@ -638,10 +642,24 @@ ul > li {
     }
 }
 
-.bx-play-circle {
+.play-icon {
+    height: 64px;
     position: absolute;
-    font-size: 50px;
+    width: 64px;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    margin: auto;
+}
+
+.play-btn {
+    position: absolute;
     margin: 0 auto;
+    height: 70px;
+}
+.bx-play-circle {
+    font-size: 70px;
 }
 .body-popups-opened {
     overflow:hidden;
@@ -756,6 +774,15 @@ input:focus::-webkit-input-placeholder {
 }
 
 /* Popup content */
+
+.movie-info-container {
+    max-width: 1280px;
+    display:flex;
+    flex-direction: column;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .popupContent {
     background-color: #fefefe;
     color: black;
@@ -787,6 +814,10 @@ input:focus::-webkit-input-placeholder {
     cursor: pointer;
 }
 
+
+.individual-movie {
+    border-radius:8px;
+}
 /* Movie generation css */
 
 
