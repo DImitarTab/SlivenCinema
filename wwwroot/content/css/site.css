@@ -504,13 +504,6 @@ body {
   padding-top: 10px;
 }
 
-.individual-movie {
-  margin-left: 100px;
-  width: 250px;
-  height: 380px;
-  box-shadow: 0 0 30px -2px #000;
-}
-
 .movie-poster {
   box-shadow: 0 0 30px -2px #000;
   border-radius: 15px;
@@ -539,6 +532,7 @@ hr {
   height: 380px;
   width: 80%;
   min-width: 500px;
+  color: #E4DEBE;
 }
 
 .title-block {
@@ -794,18 +788,68 @@ li:nth-child(8) {
 }
 
 /*popups*/
-.popup-content {
-  display: none;
-  position: relative;
-  background-color: #f9f9f9;
-  border: 1px solid #ccc;
-  padding: 10px;
-  z-index: 1;
+.trailer-container {
+  display: flex;
+  width: 250px;
+  height: 380px;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  cursor: pointer;
+}
+.trailer-container:hover {
+  opacity: 0.7;
 }
 
-/* Show the popup when it has the 'show' class */
+.bx-play-circle {
+  position: absolute;
+  font-size: 50px;
+  margin: 0 auto;
+}
+
+.body-popups-opened {
+  overflow: hidden;
+}
+
 .popup-content.show {
   display: block;
+}
+
+.popupTrailer {
+  display: none; /* Hidden by default */
+  justify-content: center;
+  align-items: center;
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.5); /* Black w/ opacity */
+}
+
+.popup-content {
+  position: relative;
+  background-color: #fefefe;
+  padding: 0;
+  width: 80%; /* Could be more or less, depending on screen size */
+  height: 80%;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 /*end of popups*/
@@ -972,7 +1016,6 @@ input:focus::-webkit-input-placeholder {
 
 /* End of movie list css*/
 .tabs-controls {
-  z-index: 10;
   display: flex;
   justify-content: center;
   align-items: stretch;
@@ -1039,25 +1082,25 @@ input:focus::-webkit-input-placeholder {
   transition: color 0.5s;
 }
 .card.hidden:nth-of-type(1) {
-  transform: rotate(-36deg) translateX(101%) translateY(-30%) scale(1) skewX(5deg) skewY(6deg);
+  transform: rotate(-49deg) translateX(101%) translateY(-15%) scale(0.4) skewX(12deg) skewY(11deg);
 }
 .card.hidden:nth-of-type(2) {
-  transform: rotate(-75deg) translateX(101%) translateY(-55%) scale(0.2) skewX(6deg) skewY(11deg);
+  transform: rotate(-97deg) translateX(101%) translateY(-45%) scale(0.2) skewX(10deg) skewY(7deg);
 }
 .card.hidden:nth-of-type(3) {
-  transform: rotate(-25deg) translateX(101%) translateY(-31%) scale(0.2) skewX(12deg) skewY(11deg);
+  transform: rotate(-34deg) translateX(101%) translateY(-39%) scale(0.1) skewX(5deg) skewY(6deg);
 }
 .card.hidden:nth-of-type(4) {
-  transform: rotate(-30deg) translateX(101%) translateY(-2%) scale(0.4) skewX(7deg) skewY(10deg);
+  transform: rotate(-34deg) translateX(101%) translateY(-13%) scale(0.3) skewX(4deg) skewY(5deg);
 }
 .card.hidden:nth-of-type(5) {
-  transform: rotate(-7deg) translateX(101%) translateY(-56%) scale(0.2) skewX(1deg) skewY(11deg);
+  transform: rotate(-90deg) translateX(101%) translateY(-43%) scale(0.5) skewX(10deg) skewY(3deg);
 }
 .card.hidden:nth-of-type(6) {
-  transform: rotate(0deg) translateX(101%) translateY(-38%) scale(0.8) skewX(10deg) skewY(11deg);
+  transform: rotate(-53deg) translateX(101%) translateY(-31%) scale(0.9) skewX(7deg) skewY(12deg);
 }
 .card.hidden:nth-of-type(7) {
-  transform: rotate(-8deg) translateX(101%) translateY(-50%) scale(0.6) skewX(8deg) skewY(10deg);
+  transform: rotate(-98deg) translateX(101%) translateY(-6%) scale(0.7) skewX(6deg) skewY(6deg);
 }
 .card:nth-of-type(1) {
   z-index: 6;

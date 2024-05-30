@@ -47,6 +47,44 @@ var swiper2 = new Swiper(".movie", {
 });
 
 
+document.addEventListener('DOMContentLoaded', (event) => {
+    var openPopupBtn = document.getElementById('openTrailerBtn');
+    var popup = document.getElementById('popupTrailer');
+    var closePopupBtn = document.getElementById('closePopupBtn');
+    console.log(popup);
+    console.log(openPopupBtn);
+
+    console.log(closePopupBtn);
+
+
+    openPopupBtn.addEventListener('click', function () {
+        popup.style.display = 'flex';
+        $("body").toggleClass("body-popups-opened");
+    });
+
+    closePopupBtn.addEventListener('click', function () {
+        popup.style.display = 'none';
+        $("body").removeClass("body-popups-opened");
+
+        stopVideo();
+    });
+
+    window.addEventListener('click', function (event) {
+        if (event.target == popup) {
+            popup.style.display = 'none';
+            $("body").removeClass("body-popups-opened");
+
+            stopVideo();
+        }
+    });
+
+    function stopVideo() {
+        var iframe = document.getElementById('youtubeVideo');
+        iframe.src = iframe.src;
+    }
+});
+
+
 $(document).ready(function () {
 
 
