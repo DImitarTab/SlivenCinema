@@ -86,8 +86,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
 
 $(document).ready(function () {
-
-
+   
     $.get("Home/_Movies", function (data) {
         $("#loadPartialView").append(data);
     });
