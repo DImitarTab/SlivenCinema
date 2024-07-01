@@ -1,7 +1,7 @@
 ﻿@model SlivenCinema.Models.Movie
 
 
-
+@* 
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -18,27 +18,52 @@
    
   </head>
   <body>
-    <div class="container">
-      <header class="header">
-        <div class="header-name"><h1>Sliven Cinema</h1></div>
-      </header>
-      <section class="main-body">
-        <nav>
-          <ul>
-                    <li><a asp-area="" asp-controller="Home" asp-action="Index">This week</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="ComingSoon">Coming Soon</a></li>
+    <div class="wrapper">
+        <header class="header">
+            <a asp-controller="Home" asp-action="Index" class="logo">
+                <i class='bx bxs-movie-play'></i>Sliven Cinema
+            </a>
 
-                    <li><a asp-area="" asp-controller="Home" asp-action="About">About the cinema</a></li>
-          </ul>
-        </nav>
+
+            <ul class="nav-list">
+                <li><a class="nav-active" asp-area="" asp-controller="Home" asp-action="Index">This week</a></li>
+                <li><a asp-area="" asp-controller="Home" asp-action="ComingSoon">Coming Soon</a></li>
+                <li><a asp-area="" asp-controller="Home" asp-action="About">About the cinema</a></li>
+            </ul>
+        </header> *@
+      <section class="main-body">
         <div class="main-panel movie--panel">
+                <div class="movie swiper">
+                    <!-- Additional required wrapper -->
+                    <div class="swiper-wrapper">
+                        <!-- Slides -->
+                        @for (int i = 1; i < 4; i++)
+                        {
+                            <div class="swiper-slide container">
+                                <img src="../images/@(Model.ImagePath)_carousel_@(i).jpg" alt="">
+                                <div class="home-text">
+                                    <h1>@Model.Title</h1>
+                                    <span>@Model.Genre</span>
+                                </div>
+                            </div>
+                        }
+                        <!-- End of Slides -->
+
+                    </div>
+                    <!-- If we need pagination -->
+                    <div class="swiper-pagination"></div>
+
+
+                    <!-- If we need scrollbar -->
+
+                </div>
             <div class="popupContainer">
                 <div class="popupContent">
                     <span class="close">&times;</span>
                     <h1>Add Movie Screening</h1>
                     <form id="movieScreeningForm">
-                        <label for="movieName">Movie Name:</label>
-                        <input type="text" id="movieName" name="movieName" required><br><br>
+                        
+                        <input type="hidden" id="movieName" name="movieName" value="@Model.Title"><br><br>
 
                         <label for="screeningDate">Screening Date:</label>
                         <input type="date" min="@Model.ReleaseDate.Date.ToString("yyyy-MM-dd")" id="screeningDate" name="screeningDate" required><br><br>
@@ -52,12 +77,27 @@
                     </form>
                 </div>
              </div>
+             <div class="movie-info-container">
           <div class="title-block">
-            <img
-              src="../images/@(Model.ImagePath).jpg"
-              class="individual-movie"
-              alt="@Model.Title"
-            />
+            <div id="openTrailerBtn" class="trailer-container">
+                <img src="../images/@(Model.ImagePath).jpg"
+                     class="individual-movie"
+                     
+                     alt="@Model.Title" />
+              
+                <svg version="1.1" viewBox="0 0 64 64" class="play-btn"><g fill="rgba(0,0,0,.5)"><path class="circle" pid="0" d="M32 63a30.898 30.898 0 0 1-21.92-9.08A30.898 30.898 0 0 1 1 32a30.898 30.898 0 0 1 9.08-21.92A30.898 30.898 0 0 1 32 1a30.898 30.898 0 0 1 21.92 9.08A30.898 30.898 0 0 1 63 32a30.898 30.898 0 0 1-9.08 21.92A30.898 30.898 0 0 1 32 63z"></path><path pid="1" d="M32 2a29.902 29.902 0 0 0-21.213 8.787A29.902 29.902 0 0 0 2 32a29.902 29.902 0 0 0 8.787 21.213A29.902 29.902 0 0 0 32 62a29.902 29.902 0 0 0 21.213-8.787A29.902 29.902 0 0 0 62 32a29.902 29.902 0 0 0-8.787-21.213A29.902 29.902 0 0 0 32 2m0-2c17.673 0 32 14.327 32 32 0 17.673-14.327 32-32 32C14.327 64 0 49.673 0 32 0 14.327 14.327 0 32 0z" fill="#fff"></path></g><path class="arrow" pid="2" d="M38.001 30.39l-10.2-6.134a1.883 1.883 0 0 0-1.434-.193 1.712 1.712 0 0 0-1.1.866 1.941 1.941 0 0 0-.266 1.061v12.039a1.829 1.829 0 0 0 2.76 1.714l10.24-6.153a1.838 1.838 0 0 0 .8-2.434 1.806 1.806 0 0 0-.8-.766z" fill="#fff"></path></svg>
+              </div>
+
+            <div id="popupTrailer" class="popupTrailer">
+                <div class="popup-content">
+
+                    <span id="closePopupBtn" class="close">&times;</span>
+                    <iframe id="youtubeVideo" width="100%" height="100%" src="https://www.youtube.com/embed/tgbNymZ7vqY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
+            
+            @* <iframe individual-movie width="420" height="345" src="https://www.youtube.com/embed/tgbNymZ7vqY">
+            </iframe> *@
             <div class="information">
               <div class="heading heading--name"><h2>@Model.Title</h2></div>
               <hr />
@@ -130,92 +170,13 @@
                                 </div>
                         }
                         </div>
-            @* <div class="screening-times">
-                        <div class="full-panel cards-container">
-                                    <div class="projection projection--one">
-                                        @for (var j = 0; j < Model.Screening.Count(); j++)
-                                        {
-                                            <div class="time-container">
-                                                <a href="@Url.Action("BookTicket", "Screening", new { movieTime=Model.Screening[j].Time, movieName=Model.Title})" class="screening-time" data-time="@Model.Screening[j].Time" data-moviename="@Model.Title">@Model.Screening[j].Time.TimeOfDay.ToString("hh\\:mm")</a>
-                                            </div>
-                                        }
-                                    </div>
-                        </div>
-                        @* <div class="time-container">
-                  <button class="openPopup">+</button>
-                </div>
 
-
-                    </div>*@
           </div>
+        </div>
         </div>
       </section>
     </div>
-  </body>
+@*   </body>
 
-@*  <script>
-
-      $(document).ready(function() {
-          $(".openPopup").on('click', function(){
-              var reusableForm = $(this).closest('.popupContainer');
-              $(".popupContainer").show();
-          });
-          
-          $(".close").on('click', function(){
-              $(".popupContainer").hide();
-          });
-
-          $(window).on('click', function(e) {
-              if(e.target == $(".popupContainer")) {
-                  $(".popupContainer").hide();
-              }         
-          });
-      });
-
-//      document.getElementsByClassName("openPopup").addEventListener("click", function() {
-//    document.getElementByClassName("popupContainer").style.display = "block";
-//});
-
-//// Close the popup when the close button or outside the popup is clicked
-//document.querySelector(".close").addEventListener("click", function() {
-//    document.getElementsByClassName("popupContainer").style.display = "none";
-//});
-
-//window.addEventListener("click", function(event) {
-//    if (event.target == document.getElementsByClassName("popupContainer")) {
-//        document.getElementsByClassName("popupContainer").style.display = "none";
-//    }
-//});
-
-document.getElementById("movieScreeningForm").addEventListener("submit", function(event) {
-    event.preventDefault(); // Prevent the form from submitting traditionally
-
-    // Get form data
-    var formData = new FormData(this);
-
-    // Create an object from form data
-    var movieScreening = {};
-    formData.forEach(function(value, key){
-        movieScreening[key] = value;
-    });
-
-    // Send the movie screening data to the server (you can use AJAX to send the data)
-    console.log("Movie Name: " + movieScreening.movieName);
-    console.log("Screening Date: " + movieScreening.screeningDate);
-    console.log("Screening Time: " + movieScreening.screeningTime);
-
-    $.post('@Url.Action("AddScreening")', {
-        movieName: movieScreening.movieName,
-        movieDate: movieScreening.screeningDate,
-        movieTime: movieScreening.screeningTime
-    }).done(function (d) 
-    {
-        document.getElementsByClassName("popupContainer").style.display = "none";
-                    console.log("Success")
-                })
-                .fail(function(xhr,status,error){
-                    console.error("error" + error)
-                });
-});
-  </script>*@
 </html>
+ *@

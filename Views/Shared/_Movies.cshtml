@@ -4,14 +4,15 @@
 {
  
     <div class="poster-container">
+
          <div class="rating"><span>@Model[i].Rating</span>
          </div>
          <a href="@Url.Action("Movie", "Home", new { movieID=Model[i].MovieID})" class="poster-link" data-movieid="@Model[i].MovieID" title="Кликнете тук за страницата на филма Tango and Cash">
-              <img
+              <div class="box-img"><img
                 class="movie-poster"
                 src="images/@(Model[i].ImagePath).jpg"
-                alt="@Model[i].Title"
-              />
+                alt="@Model[i].Title" />
+            </div>
               <p class="poster-name">@Model[i].Title</p>
               <p class="poster-genre">@Model[i].Genre</p>
          </a>

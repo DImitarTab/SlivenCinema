@@ -23,24 +23,33 @@ namespace SlivenCinema.Controllers
 		{
 			var Today = DateTime.Today;
             var movieList = _context.Movies.Include(x => x.Screening).Where(x => x.Screening.Any(y => y.Time.Date == Today)).ToList();
+            var allMovies = _context.Movies.Include(x => x.Screening).ToList();
 
-			var newMovieList = AddMovieViewModel(movieList, Today);
 
-            return View(newMovieList);
+            var newMovieList = AddMovieViewModel(movieList, Today);
+
+            return View(allMovies);
 		}
 
 		
 
         public PartialViewResult _Movies(DateTime Today)
 		{
+			var defaultDate = new DateTime();
+			if (Today==defaultDate)
+			{
+				Today = DateTime.Today;
+			}
+
 			var movieList = _context.Movies.Include(x => x.Screening).Where(x => x.Screening.Any(y => y.Time.Date == Today)).ToList();
 
             var newMovieList = AddMovieViewModel(movieList, Today);
 
+
 			for (int i = 0; i < newMovieList.Count; i++)
 			{
-				newMovieList[i].Screening.OrderBy(x => x.Time.Date).ThenBy(x=>x.Time.TimeOfDay);
-			}
+				newMovieList[i].Screening = newMovieList[i].Screening.OrderBy(x => x.Time.Date).ThenBy(x => x.Time.TimeOfDay).ToList();
+            }
 
             return PartialView("_Movies", newMovieList);
 		}

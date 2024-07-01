@@ -1,11 +1,96 @@
-const urlParams = new URLSearchParams(window.location.search);
+let header = document.querySelector('header');
+let menu = document.querySelector('#menu-icon');
+let navbar = document.querySelector('.nav-list');
 
-function setImage() {
-    $(".movie-poster").attr("src", "");
-}
+
+
+$("#menu-icon").on("click", function() {
+    (this).classList.toggle('bx-x');
+    $('.nav-list').toggleClass('nav-active');
+    $('.header').toggleClass('active');
+});
+
+$(window).on("scroll", function () {
+    $('.nav-list').removeClass('nav-active');
+    $('.header').removeClass('active');
+})
+
+window.addEventListener('scroll', () => {
+    header.classList.toggle('shadow', window.scrollY > 0);
+});
+
+
+var swiper = new Swiper(".home", {
+            spaceBetween: 30,
+            centeredSlides: true,
+            autoplay: {
+                delay: 4000,
+                disableOnInteraction: true,
+            },
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+});
+
+var swiper2 = new Swiper(".movie", {
+    spaceBetween: 30,
+    centeredSlides: true,
+    autoplay: {
+        delay: 4000,
+        disableOnInteraction: true,
+    },
+    pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+    },
+});
+
+
+document.addEventListener('DOMContentLoaded', (event) => {
+    var openPopupBtn = document.getElementById('openTrailerBtn');
+    var popup = document.getElementById('popupTrailer');
+    var closePopupBtn = document.getElementById('closePopupBtn');
+    console.log(popup);
+    console.log(openPopupBtn);
+
+    console.log(closePopupBtn);
+
+
+    openPopupBtn.addEventListener('click', function () {
+        popup.style.display = 'flex';
+        $("body").toggleClass("body-popups-opened");
+    });
+
+    closePopupBtn.addEventListener('click', function () {
+        popup.style.display = 'none';
+        $("body").removeClass("body-popups-opened");
+
+        stopVideo();
+    });
+
+    window.addEventListener('click', function (event) {
+        if (event.target == popup) {
+            popup.style.display = 'none';
+            $("body").removeClass("body-popups-opened");
+
+            stopVideo();
+        }
+    });
+
+    function stopVideo() {
+        var iframe = document.getElementById('youtubeVideo');
+        iframe.src = iframe.src;
+    }
+});
 
 
 $(document).ready(function () {
+   
+    $.get("Home/_Movies", function (data) {
+        $("#loadPartialView").append(data);
+    });
+
     $(".input").on("click", function () {
 
         var today = $(this).data('screeningtime');
@@ -21,25 +106,7 @@ $(document).ready(function () {
     });
     
 });
-$(".input").on("click", function (evt) {
-    var i, tabcontent, tablinks;
-    var cityName = $(this).data("screeningtime");
-    // Get all elements with class="tabcontent" and hide them
-    tabcontent = document.getElementsByClassName("tabcontent");
-    for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-    }
 
-    // Get all elements with class="tablinks" and remove the class "active"
-    tablinks = document.getElementsByClassName("input");
-    for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
-    }
-
-    // Show the current tab, and add an "active" class to the button that opened the tab
-    document.getElementById(cityName).style.display = "block";
-    evt.currentTarget.className += " active";
-});
 
 $(document).ready(function () {
     
@@ -80,22 +147,40 @@ $(document).ready(function () {
         console.log(selectedSeats);
     });
 
+    var btn = document.getElementById("popupBtn");
+    var popup = document.getElementById("popupContent");
+
+    // Show the popup when the button is clicked
+
 
 
     $(".sbt-button").on("click", function () {
-        $.post('/Screening/BookTicket', {
-            selectSeats: selectedSeats,
-            movieName: movieName,
-            movieTime: movieTime
+        if (selectedSeats.length == 0) {
 
-        })
-            .done(function (d) {
-                location.reload();
-                console.log("Success")
-        })
-            .fail(function (xhr, status, error) {
-                console.error("error" + error)
+            popup.classList.toggle("show");
+            window.addEventListener("click", function (event) {
+                if (!event.target.matches('#popupBtn')) {
+                    popup.classList.remove("show");
+                }
             });
+        }
+        else {
+
+
+            $.post('/Screening/BookTicket', {
+                selectSeats: selectedSeats,
+                movieName: movieName,
+                movieTime: movieTime
+
+            })
+                .done(function (d) {
+                    location.reload();
+                    console.log("Success")
+                })
+                .fail(function (xhr, status, error) {
+                    console.error("error" + error)
+                });
+        }
     });  
 });
 

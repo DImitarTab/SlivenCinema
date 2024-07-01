@@ -1,43 +1,38 @@
-﻿@model List<SlivenCinema.ViewModels.MoviesListViewModel>
+﻿@* @model List<SlivenCinema.ViewModels.MoviesListViewModel> *@
+@model List<SlivenCinema.Models.Movie>
 
 @{
     Layout = "_Layout";
 }
 
 
-<!DOCTYPE html>
-
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Sliven Cinema</title>
-    <link
-      href="https://fonts.googleapis.com/css?family=Bungee+Shade"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css?family=Open+Sans"
-      rel="stylesheet"
-    />
-   <style></style>
-  </head>
-
-  <body>
-    <div class="wrapper">
-    <header class="header">
-      <div class="header-name"><h1>Sliven Cinema</h1></div>
-    </header>
     <section class="main-body">
-      <nav>
-        <ul>
-          <li><a asp-area="" asp-controller="Home" asp-action="Index">This week</a></li>
-          <li><a asp-area="" asp-controller="Home" asp-action="ComingSoon">Coming Soon</a></li>
-          
-          <li><a asp-area="" asp-controller="Home" asp-action="About">About the cinema</a></li>
-        </ul>
-      </nav>
+      
       <div class="main-panel first-panel">
+                <div class="home swiper">
+                    <!-- Additional required wrapper -->
+                    <div class="swiper-wrapper">
+                        <!-- Slides -->
+                        @for (int i = 0; i < 4; i++)
+                        {
+                            <div class="swiper-slide container">
+                                <img src="images/@(Model[i].ImagePath)_carousel_1.jpg" alt="">
+                                <div class="home-text">
+                                    <h1>@Model[i].Title</h1>
+                                    <a href="@Url.Action("Movie", "Home", new { movieID=Model[i].MovieID})" class="poster-link btn" data-movieid="@Model[i].MovieID">Check details</a>
+                                </div>
+                            </div>
+                        }
+                        <!-- End of Slides -->
 
+                    </div>
+                    <!-- If we need pagination -->
+                    <div class="swiper-pagination"></div>
+
+
+                    <!-- If we need scrollbar -->
+                    
+                </div>
           <div class="popupContainer">
                 <div class="popupContent">
                     <span class="close">&times;</span>
@@ -70,18 +65,28 @@
                     </form>
                 </div>
              </div>
+             
         <div class="heading heading--air-date">
+            
                     <ul class="tabs-controls">
                         <li class="tabs-controls__item">
-                            <a href="#" class="tabs-controls__link input" data-screeningtime="@DateTime.Today.AddDays(0)" data-id="0">
+                            <a href="#" class="tabs-controls__link input tabs-controls__link--active" data-screeningtime="@DateTime.Today.AddDays(0)" data-id="0">
                                 today
                             </a>
                         </li>
                         @for (int i = 1; i < 7; i++)
                         {
-                            <li class="tabs-controls__item">
+                            <li class="tabs-controls__item long-date">
                                 <a href="#" class="tabs-controls__link input" data-screeningtime="@DateTime.Today.AddDays(i)" data-id="i">
                                     @DateTime.Today.AddDays(i).DayOfWeek
+                                </a>
+                            </li>
+                        }
+                        @for (int i = 1; i < 7; i++)
+                        {
+                            <li class="tabs-controls__item short-date">
+                                <a href="#" class="tabs-controls__link input" data-screeningtime="@DateTime.Today.AddDays(i)" data-id="i">
+                                    @DateTime.Today.AddDays(i).ToString("ddd")
                                 </a>
                             </li>
                         }
@@ -93,41 +98,16 @@
                     <button class="openPopup">+</button>  
                  
         </div>
-                <div class="full-panel cards-container">
-                    
-                    
-                        @for (var i = 0; i < Model.Count(); i++)
-                        {
-                        
-                        <div class="poster-container">
-                                <div class="rating">
-                                    <span>@Model[i].Rating</span>
-                                </div>
-                                <a href="@Url.Action("Movie", "Home", new { movieID=Model[i].MovieID})" class="poster-link" data-movieid="@Model[i].MovieID" title="Кликнете тук за страницата на филма Tango and Cash">
-                                    <img class="movie-poster"
-                                         src="images/@(Model[i].ImagePath).jpg"
-                                         alt="@Model[i].Title" />
-                                    <p class="poster-name">@Model[i].Title</p>
-                                    <p class="poster-genre">@Model[i].Genre</p>
-                                </a>
-                                <div class="projection projection--one">
-                                    @for (var j = 0; j < Model[i].Screening.Count(); j++)
-                                    {
-                                        <div class="time-container">
-                                        <a href="@Url.Action("BookTicket", "Screening", new { movieTime=Model[i].Screening[j].Time, movieName=Model[i].Title})" class="screening-time" data-time="@Model[i].Screening[j].Time" data-moviename="@Model[i].Title">@Model[i].Screening[j].Time.TimeOfDay.ToString("hh\\:mm")</a>
-                                        </div>
-                                    }
-                                </div>
-                            </div>
-                        }
-                    
-                    
+                <div class="full-panel cards-container" id="loadPartialView">
                 </div>         
         <!-- This is the movies panel -->
       </div>
     </section>  
     </div>
-  </body>
+   
+
+@*   </body>
 
 
 </html>
+ *@

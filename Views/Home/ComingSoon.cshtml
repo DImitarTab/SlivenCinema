@@ -1,54 +1,50 @@
 ﻿@model List<SlivenCinema.Models.Movie>
-<!DOCTYPE html>
 
-
-
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Sliven Cinema</title>
-    <link
-      href="https://fonts.googleapis.com/css?family=Bungee+Shade"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css?family=Open+Sans"
-      rel="stylesheet"
-    />
-    
-  </head>
-
-  
-    <div class="container">
-      <header class="header">
-        <div class="header-name"><h1>Sliven Cinema</h1></div>
-      </header>
       <section class="main-body">
-        <nav>
-          <ul>
-          <li><a asp-area="" asp-controller="Home" asp-action="Index">This week</a></li>
-          <li><a asp-area="" asp-controller="Home" asp-action="ComingSoon">Coming Soon</a></li>         
-          <li><a asp-area="" asp-controller="Home" asp-action="About">About the cinema</a></li>
-          </ul>
-        </nav>
+        
         <div class="main-panel first-panel">
-          <div class="heading heading--air-date">
+            <div class="home swiper">
+                <!-- Additional required wrapper -->
+                <div class="swiper-wrapper">
+                    <!-- Slides -->
+                    @for (int i = 0; i < Model.Count; i++)
+                    {
+                        <div class="swiper-slide container">
+                            <img src="/images/@(Model[i].ImagePath)_carousel_1.jpg" alt="">
+                            <div class="home-text">
+                                <h1>@Model[i].Title</h1>
+                                <a href="@Url.Action("Movie", "Home", new { movieID=Model[i].MovieID})" class="poster-link btn" data-movieid="@Model[i].MovieID">Check details</a>
+                            </div>
+                        </div>
+                    }
+                    <!-- End of Slides -->
+
+                </div>
+                <!-- If we need pagination -->
+                <div class="swiper-pagination"></div>
+
+
+                <!-- If we need scrollbar -->
+
+            </div>
+            <div class="panel-title">
             <h2>Coming Soon</h2>
-            <hr />
+ 
           </div>
+            <div class="full-panel cards-container" >
               @for (var i = 0; i < @Model.Count(); i++)
               {
                   <div class="poster-container">
-                    <a class="poster" href="@Url.Action("Movie", "Home", new { movieID=Model[i].MovieID})" data-movieid="@Model[i].MovieID" title="Кликнете тук за страницата на филма 96">
-                          <img class="movie-poster" src="~/images/@(Model[i].ImagePath).jpg" alt="@(Model[i].Title)" />
+                        <a class="poster-link" href="@Url.Action("Movie", "Home", new { movieID=Model[i].MovieID})" data-movieid="@Model[i].MovieID" title="Кликнете тук за страницата на филма 96">
+                            <div class="box-img">
+                                <img class="movie-poster" src="~/images/@(Model[i].ImagePath).jpg" alt="@(Model[i].Title)" />
+                             </div>
                           <p class="poster-name">@Model[i].Title</p>
                           <p class="poster-genre">@Model[i].Genre</p>
                       </a>
                   </div>
               }
-
+              </div>
           <!-- This is the movies panel -->
         </div>
       </section>
-    </div>
-    </html>
