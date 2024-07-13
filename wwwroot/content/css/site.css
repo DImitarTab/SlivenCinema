@@ -800,6 +800,7 @@ li:nth-child(8) {
   align-items: center;
   color: white;
   cursor: pointer;
+  margin-right: 20px;
 }
 .trailer-container:hover {
   opacity: 0.7;
@@ -1113,25 +1114,25 @@ input:focus::-webkit-input-placeholder {
   transition: color 0.5s;
 }
 .card.hidden:nth-of-type(1) {
-  transform: rotate(-31deg) translateX(101%) translateY(-10%) scale(0.3) skewX(5deg) skewY(8deg);
+  transform: rotate(-25deg) translateX(101%) translateY(-56%) scale(0.4) skewX(7deg) skewY(10deg);
 }
 .card.hidden:nth-of-type(2) {
-  transform: rotate(-13deg) translateX(101%) translateY(-36%) scale(1) skewX(1deg) skewY(5deg);
+  transform: rotate(-80deg) translateX(101%) translateY(-23%) scale(1) skewX(11deg) skewY(3deg);
 }
 .card.hidden:nth-of-type(3) {
-  transform: rotate(-77deg) translateX(101%) translateY(-54%) scale(0.4) skewX(2deg) skewY(1deg);
+  transform: rotate(-5deg) translateX(101%) translateY(-14%) scale(0.2) skewX(6deg) skewY(10deg);
 }
 .card.hidden:nth-of-type(4) {
-  transform: rotate(-24deg) translateX(101%) translateY(-30%) scale(0.8) skewX(2deg) skewY(11deg);
+  transform: rotate(-34deg) translateX(101%) translateY(-18%) scale(0.5) skewX(11deg) skewY(3deg);
 }
 .card.hidden:nth-of-type(5) {
-  transform: rotate(-73deg) translateX(101%) translateY(-25%) scale(1) skewX(5deg) skewY(4deg);
+  transform: rotate(-62deg) translateX(101%) translateY(-18%) scale(0.8) skewX(4deg) skewY(12deg);
 }
 .card.hidden:nth-of-type(6) {
-  transform: rotate(-7deg) translateX(101%) translateY(-34%) scale(0.2) skewX(8deg) skewY(6deg);
+  transform: rotate(-22deg) translateX(101%) translateY(-58%) scale(0.6) skewX(5deg) skewY(8deg);
 }
 .card.hidden:nth-of-type(7) {
-  transform: rotate(-9deg) translateX(101%) translateY(-15%) scale(0.7) skewX(9deg) skewY(1deg);
+  transform: rotate(-43deg) translateX(101%) translateY(-46%) scale(0.4) skewX(12deg) skewY(12deg);
 }
 .card:nth-of-type(1) {
   z-index: 6;
